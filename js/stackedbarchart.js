@@ -7,7 +7,8 @@ $('document').ready(function() {
     var selectedCountry;
     var selectedIssue;
     // Define continent data
-    var continents = ["Africa", "Antarctica", "Asia", "Australia", "Europe", "North America", "Oceania", "South America"];
+    var continents = ["Africa", "Asia", "Australia", "Europe", "North America", "South America"];
+    //var continents = ["Africa", "Antarctica", "Asia", "Australia", "Europe", "North America", "South America"];
     var continentData = [];
     var countryData = [];
     var filterData = [];
@@ -32,7 +33,7 @@ $('document').ready(function() {
     var continentTotalVote;
 
     // Set margin, width and height for SVG drawing
-    var cmargin = {top:50, right:20, bottom:30,left:60},
+    var cmargin = {top:50, right:20, bottom:100,left:60},
         cwidth = 1100 - cmargin.left - cmargin.right,
         cheight = 600 - cmargin.top - cmargin.bottom;
 
@@ -371,7 +372,16 @@ d3.select("#selectissue").on("change", wrangleData);
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + cheight + ")")
-            .call(xAxis);
+//            .attr("transform", "rotate(-1)")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-1em")
+            .attr("dy", "0.6em")
+            .attr("transform", function(d) {
+                return "rotate(-45)"
+            })
+            .call(wrap, x.rangeBand() - 70);
 
         svg.append("g")
             .attr("class", "y axis")
@@ -502,6 +512,31 @@ d3.select("#selectissue").on("change", wrangleData);
         bar.call(tip);
 
 
+    }
+
+    // Reference: https://bl.ocks.org/mbostock/7555321
+    function wrap(text, width) {
+        text.each(function() {
+            var text = d3.select(this),
+                words = text.text().split(/\s+/).reverse(),
+                word,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 1.1, // ems
+                y = text.attr("y"),
+                dy = parseFloat(text.attr("dy")),
+                tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    tspan.text(line.join(" "));
+                    line = [word];
+                    tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
+        });
     }
 
 

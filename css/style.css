@@ -183,11 +183,12 @@ div.tooltip {
 
 .d3-tip {
     line-height: 1;
-    font-family: Arial;
+    font: 13px sans-serif;
+    /*font-family: Arial;*/
     padding: 12px;
-//  background: rgba(0, 0, 0, 0.8);
+/*//  background: rgba(0, 0, 0, 0.8);*/
     background: black;
-//  color: #fff;
+/*//  color: #fff;*/
     color: white;
     border-color: black;
     border-width: 2px;
@@ -215,6 +216,10 @@ div.tooltip {
     left: 0;
 }
 
+
+.axis {
+    font: 10px sans-serif;
+}
 
 .axis path,
 .axis line {
