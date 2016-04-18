@@ -71,9 +71,14 @@ h6 {font-family: 'Roboto', sans-serif;
     color:#000;
 
 }
+p {font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color:#000;
+
+}
 
 body {font-family: 'Roboto', sans-serif;
-   // font-size: 15px;
+    font-size: 14px;
     width:100%;
     line-height:2%;
     text-indent:1px;
@@ -209,3 +214,21 @@ div.tooltip {
     top: 100%;
     left: 0;
 }
+
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.x.axis path {
+    display: none;
+}
+
+
