@@ -7,7 +7,7 @@ d3.select(window).on("resize", throttle);
 var mapWidth = document.getElementById('map-area').offsetWidth ;
 var mapHeight = mapWidth / 2 ;
 
-console.log(mapWidth, " ", mapWidth);
+//console.log(mapWidth, " ", mapWidth);
 
 var color = d3.scale.linear()
     .range(colorbrewer.RdYlGn[11]);
@@ -50,7 +50,7 @@ function loadData() {
             //console.log("Countries = ",countries);
             console.log("UNPri = ", UNPri);
 
-            wrangleData();
+            map1WrangleData();
 
             topo = countries;
 
@@ -88,7 +88,7 @@ function drawMap(){
 
 function draw(topo) {
 
-    var country = g.selectAll(".country").data(topo);
+    var mapCountry = g.selectAll(".mapCountry").data(topo);
 
     maxValue = d3.max(countries, function(d) {return d.properties.population});
 
@@ -126,9 +126,9 @@ function draw(topo) {
 
     //console.log(color.domain());
 
-    country.enter()
+    mapCountry.enter()
         .insert("path")
-        .attr("class", "country")
+        .attr("class", "mapCountry")
         .attr("d", path)
         .attr("id", function(d) { return d.id; })
         .attr("title", function(d) { return d.properties.name; })
@@ -140,7 +140,7 @@ function draw(topo) {
     var offsetT =document.getElementById('map-area').offsetTop+10;
 
     //tooltips
-    country
+    mapCountry
         .on("mousemove", function(d) {
 
             var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
@@ -207,7 +207,7 @@ function move() {
     g.attr("transform", "translate(" + t + ")scale(" + s + ")");
 
     //adjust the country hover stroke mapWidth based on zoom level
-    d3.selectAll(".country").style("stroke-width", 1.5 / s);
+    d3.selectAll(".mapCountry").style("stroke-width", 1.5 / s);
 }
 
 var throttleTimer;
@@ -241,7 +241,7 @@ function updateLegend(maxValue){
         .attr("y", function(d, i){ return mapHeight - (i*labelHeight) - labelHeight ;})
         .text(function(d){ return d3.format(",")(d3.round(d)); });
 }
-function wrangleData(){
+function map1WrangleData(){
 
 
     for (var i = 0; i < countries.length; i++){

@@ -116,7 +116,7 @@ function benCreateMap(error, data2, data3, data4) {
         .data(benWorld)
         .enter().append("path")
         .attr("d", benPath)
-        .attr("class","country")
+        .attr("class","map2Country")
         .attr("fill", function(d){
 
             if(benRankByCountry[d.properties.name]===undefined){return "#ccc";}
