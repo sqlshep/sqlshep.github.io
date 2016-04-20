@@ -556,7 +556,7 @@
 
                 <div class="form-group">
                     <Label>Select Issues:</Label><br>
-                    <select class="selectpicker" id ="selectissue">
+                    <select class="selectpicker" id ="selectissue" onchange="benUpdateMap()">
                         <option selected value="All">All Issues</option>
                         <option style="background: #fcb749; color: white;" value="100">Action taken on climate change</option>
                         <option style="background: #fbe792; color: white;" value="101">Better transport and roads</option>
@@ -587,6 +587,33 @@
 <hr/>
 
 
+    <h1>Visualization 4 Ben</h1>
+
+    <hr/>
+    <div class="container">
+        <div id="map2">
+
+            <select id="selected-priority" onchange="benUpdateMap()">
+                <option value="ClimateChange">Action Taken on Climate Change</option>
+                <option value="BetterTransport">Better Transport and Roads</option>
+                <option value="SupportWork">Support for People who can't Work</option>
+                <option value="AccessWater">Access to Clean Water and Sanitation</option>
+                <option value="BetterHealthcare">Better Healthcare</option>
+                <option value="GoodEducation">A Good Education</option>
+                <option value="ResponsiveGovernment">A Responsive Government We Can Trust</option>
+                <option value="PhoneInternet">Phone and Internet Access</option>
+                <option value="ReliableEnergy">Reliable Energy at Home</option>
+                <option value="AffordableFood">Affordable and Nutritious Food</option>
+
+                <option value="ProtectingForests">Protecting forests, rivers and oceans</option>
+                <option value="PoliticalFreedoms">Political freedoms</option>
+                <option value="ProtectionCrime">Protection against crime and violence</option>
+                <option value="FreedomDiscrimination">Freedom from discrimination and persecution</option>
+                <option value="Equality">Equality between men and women</option>
+                <option value="BetterJob">Better job opportunities</option>
+            </select>
+        </div>
+    </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -710,35 +737,6 @@
     </div>
 
 
-    <hr/>
-
-    <h1>Visualization 4 Ben</h1>
-
-    <hr/>
-    <div class="container">
-        <div id="map2">
-
-            <select id="selected-priority" onchange="benUpdateMap()">
-                <option value="ClimateChange">Action Taken on Climate Change</option>
-                <option value="BetterTransport">Better Transport and Roads</option>
-                <option value="SupportWork">Support for People who can't Work</option>
-                <option value="AccessWater">Access to Clean Water and Sanitation</option>
-                <option value="BetterHealthcare">Better Healthcare</option>
-                <option value="GoodEducation">A Good Education</option>
-                <option value="ResponsiveGovernment">A Responsive Government We Can Trust</option>
-                <option value="PhoneInternet">Phone and Internet Access</option>
-                <option value="ReliableEnergy">Reliable Energy at Home</option>
-                <option value="AffordableFood">Affordable and Nutritious Food</option>
-
-                <option value="ProtectingForests">Protecting forests, rivers and oceans</option>
-                <option value="PoliticalFreedoms">Political freedoms</option>
-                <option value="ProtectionCrime">Protection against crime and violence</option>
-                <option value="FreedomDiscrimination">Freedom from discrimination and persecution</option>
-                <option value="Equality">Equality between men and women</option>
-                <option value="BetterJob">Better job opportunities</option>
-            </select>
-        </div>
-    </div>
 
         <!-- Load JS libraries -->
         <script src="js/jquery.min.js"></script>

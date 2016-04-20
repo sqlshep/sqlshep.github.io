@@ -5,27 +5,29 @@ d3.select(window).on("resize", throttle);
 
 
 var mapWidth = document.getElementById('map-area').offsetWidth ;
-var mapHeight = mapWidth / 2 ;
+var mapHeight = mapWidth /2;
 
 //console.log(mapWidth, " ", mapWidth);
 
-var color = d3.scale.linear()
-    .range(colorbrewer.RdYlGn[11]);
+//['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']
 
+var color = d3.scale.linear()
+    .range(['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']);
+    //.range(colorbrewer.RdYlGn[11]);
 
 
 var zoom = d3.behavior.zoom()
-    .scaleExtent([1, 6])
+    .scaleExtent([1, 13])
     .on("zoom", move);
 
 var topo,projection,path,svg, g,countries,domainRange,maxValue,UNPri;
 
-//var UNpopulation;
 
 var labelWidth = 15, labelHeight = 15;
 
 var tooltip = d3.select("#map-area").append("div").attr("class", "tooltip hidden");
 
+var radius = mapHeight/2;
 
 loadData();
 
@@ -62,11 +64,17 @@ function loadData() {
 
 
 function drawMap(){
-    projection = d3.geo.mercator()
+    projection = d3.geo.orthographic()
         .translate([(mapWidth/2), (mapHeight/2)])
-        .scale( mapWidth / 2 / Math.PI);
+        .scale(radius)
+       // .translate([radius , radius])
+        .clipAngle(90   )
+        .precision(0.9);
 
-    //console.log([(mapWidth/2), (mapHeight/2)], " ",mapWidth / 2 / Math.PI);
+    //projection = d3.geo.mercator()
+    //    .translate([(mapWidth/2), (mapHeight/2)])
+    //    .scale( mapWidth / 2 / Math.PI);
+
 
 
     path = d3.geo.path()
@@ -76,7 +84,10 @@ function drawMap(){
         .attr("width", mapWidth)
         .attr("height", mapHeight)
         .call(zoom)
-        .on("click", click)
+        //.on("click", click)
+        .on("mousedown", mousedown)
+        .on("mousemove", mousemove)
+        .on("mouseup", mouseup)
         .append("g");
 
     g = svg.append("g");
@@ -93,8 +104,6 @@ function draw(topo) {
     maxValue = d3.max(countries, function(d) {return d.properties.population});
 
     //domainRange = ([0,
-    //        //(maxValue *.00001),
-    //        //(maxValue *.0001),
     //        (maxValue *.001),
     //        (maxValue *.01),
     //        (maxValue *.05),
@@ -117,8 +126,6 @@ function draw(topo) {
             (maxValue *.05),
             (maxValue *.01),
             (maxValue *.001),
-            //(maxValue *.0001),
-            //(maxValue *.00001),
             0   ]);
 
     //console.log(domainRange);
@@ -187,10 +194,10 @@ function redraw() {
 
 
 
-function click() {
-    var latlon = projection.invert(d3.mouse(this));
-
-}
+//function click() {
+//    var latlon = projection.invert(d3.mouse(this));
+//
+//}
 
 
 function move() {
@@ -341,4 +348,120 @@ function updateTable(d){
     document.getElementById('Pri-115').innerHTML = d.properties[115].toLocaleString('en');
     document.getElementById('PriPer-115').innerHTML = ((d.properties[115]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
 
+
+    $(document).ready(function()
+        {
+            $("#mapTable1").tablesorter({theme: 'blue', sortList: [[0,0]]});
+            $("#mapTable2").tablesorter({theme: 'blue', sortList: [[0,0]]});
+        }
+    );
+
+
+    //http://bl.ocks.org/patricksurry/5721459
+
+}function trackballAngles(pt) {
+    // based on http://www.opengl.org/wiki/Trackball
+    // given a click at (x,y) in canvas coords on the globe (trackball),
+    // calculate the spherical coordianates for the point as a rotation around
+    // the vertical and horizontal axes
+
+    var r = projection.scale();
+    var c = projection.translate();
+    var x = pt[0] - c[0], y = - (pt[1] - c[1]), ss = x*x + y*y;
+
+
+    var z = r*r > 2 * ss ? Math.sqrt(r*r - ss) : r*r / 2 / Math.sqrt(ss);
+
+    var lambda = Math.atan2(x, z) * 180 / Math.PI;
+    var phi = Math.atan2(y, z) * 180 / Math.PI
+    return [lambda, phi];
+}
+
+function composedRotation(λ, ϕ, γ, δλ, δϕ) {
+    λ = Math.PI / 180 * λ;
+    ϕ = Math.PI / 180 * ϕ;
+    γ = Math.PI / 180 * γ;
+    δλ = Math.PI / 180 * δλ;
+    δϕ = Math.PI / 180 * δϕ;
+
+    var sλ = Math.sin(λ), sϕ = Math.sin(ϕ), sγ = Math.sin(γ),
+        sδλ = Math.sin(δλ), sδϕ = Math.sin(δϕ),
+        cλ = Math.cos(λ), cϕ = Math.cos(ϕ), cγ = Math.cos(γ),
+        cδλ = Math.cos(δλ), cδϕ = Math.cos(δϕ);
+
+    var m00 = -sδλ * sλ * cϕ + (sγ * sλ * sϕ + cγ * cλ) * cδλ,
+        m01 = -sγ * cδλ * cϕ - sδλ * sϕ,
+        m02 = sδλ * cλ * cϕ - (sγ * sϕ * cλ - sλ * cγ) * cδλ,
+        m10 = - sδϕ * sλ * cδλ * cϕ - (sγ * sλ * sϕ + cγ * cλ) * sδλ * sδϕ - (sλ * sϕ * cγ - sγ * cλ) * cδϕ,
+        m11 = sδλ * sδϕ * sγ * cϕ - sδϕ * sϕ * cδλ + cδϕ * cγ * cϕ,
+        m12 = sδϕ * cδλ * cλ * cϕ + (sγ * sϕ * cλ - sλ * cγ) * sδλ * sδϕ + (sϕ * cγ * cλ + sγ * sλ) * cδϕ,
+        m20 = - sλ * cδλ * cδϕ * cϕ - (sγ * sλ * sϕ + cγ * cλ) * sδλ * cδϕ + (sλ * sϕ * cγ - sγ * cλ) * sδϕ,
+        m21 = sδλ * sγ * cδϕ * cϕ - sδϕ * cγ * cϕ - sϕ * cδλ * cδϕ,
+        m22 = cδλ * cδϕ * cλ * cϕ + (sγ * sϕ * cλ - sλ * cγ) * sδλ * cδϕ - (sϕ * cγ * cλ + sγ * sλ) * sδϕ;
+
+    if (m01 != 0 || m11 != 0) {
+        γ_ = Math.atan2(-m01, m11);
+        ϕ_ = Math.atan2(-m21, Math.sin(γ_) == 0 ? m11 / Math.cos(γ_) : - m01 / Math.sin(γ_));
+        λ_ = Math.atan2(-m20, m22);
+    } else {
+        γ_ = Math.atan2(m10, m00) - m21 * λ;
+        ϕ_ = - m21 * Math.PI / 2;
+        λ_ = λ;
+    }
+
+    return([λ_ * 180 / Math.PI, ϕ_ * 180 / Math.PI, γ_ * 180 / Math.PI]);
+}
+
+var m0 = null,
+    o0;
+
+function mousedown() {  // remember where the mouse was pressed, in canvas coords
+    m0 = trackballAngles(d3.mouse(svg[0][0]));
+    o0 = projection.rotate();
+    d3.event.preventDefault();
+}
+
+function mousemove() {
+    if (m0) {  // if mousedown
+        var m1 = trackballAngles(d3.mouse(svg[0][0]));
+        // we want to find rotate the current projection so that the point at m0 rotates to m1
+        // along the great circle arc between them.
+        // when the current projection is at rotation(0,0), with the north pole aligned
+        // to the vertical canvas axis, and the equator aligned to the horizontal canvas
+        // axis, this is easy to do, since D3's longitude rotation corresponds to trackball
+        // rotation around the vertical axis, and then the subsequent latitude rotation
+        // corresponds to the trackball rotation around the horizontal axis.
+        // But if the current projection is already rotated, it's harder.
+        // We need to find a new rotation equivalent to the composition of both
+
+        // Choose one of these three update schemes:
+
+        // Best behavior
+        o1 = composedRotation(o0[0], o0[1], o0[2], m1[0] - m0[0], m1[1] - m0[1])
+
+        // Improved behavior over original example
+        //o1 = [o0[0] + (m1[0] - m0[0]), o0[1] + (m1[1] - m0[1])];
+
+        // Original example from http://mbostock.github.io/d3/talk/20111018/azimuthal.html
+        // o1 = [o0[0] - (m0[0] - m1[0]) / 8, o0[1] - (m1[1] - m0[1]) / 8];
+
+        // move to the updated rotation
+        projection.rotate(o1);
+
+        // We can optionally update the "origin state" at each step.  This has the
+        // advantage that each 'trackball movement' is small, but the disadvantage of
+        // potentially accumulating many small drifts (you often see a twist creeping in
+        // if you keep rolling the globe around with the mouse button down)
+//    o0 = o1;
+//    m0 = m1;
+
+        svg.selectAll("path").attr("d", path);
+    }
+}
+
+function mouseup() {
+    if (m0) {
+        mousemove();
+        m0 = null;
+    }
 }

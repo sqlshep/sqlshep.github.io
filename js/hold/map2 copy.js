@@ -36,14 +36,6 @@ var benBorder = benSvg.append("rect")
     .style("stroke-width", '4px')
     ;
 
-//added
-var benIssueFinder = d3.scale.ordinal()
-    .domain(["100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115"])
-    .range(["ClimateChange", "BetterTransport", "SupportWork", "AccessWater", "BetterHealthcare",
-        "GoodEducation", "ResponsiveGovernment", "PhoneInternet", "ReliableEnergy", "AffordableFood",
-        "ProtectingForests", "PoliticalFreedoms", "ProtectionCrime", "FreedomDiscrimination", "Equality", "BetterJob"]);
-//added
-
 var benPriorityKey = {};
 benPriorityKey["ClimateChange"]="Action Taken on Climate Change";
 benPriorityKey["BetterTransport"]="Better Transport and Roads";
@@ -160,20 +152,7 @@ function benCreateMap(error, data2, data3, data4) {
 }
 
 function benUpdateMap() {
-//    var selectedValue = document.getElementById("selected-priority").value;
-
-     //added
-     var selectedValueOriginal = document.getElementById("selectissue").value;
-
-     if (selectedValueOriginal == "All") {
-     selectedValueOriginal = "100";
-     }
-
-     var selectedValue = benIssueFinder(selectedValueOriginal);
-
-//     console.log("Ben1");
-//     console.log(selectedValue);
-     //added
+    var selectedValue = document.getElementById("selected-priority").value;
 
     benTooltip = d3.tip().attr('class', 'd3-tip').html(function(d){return d.properties.name + "<br> " + benPriorityKey[selectedValue]
     +"<br> Rank: " + benRankByCountry[d.properties.name][selectedValue]});
