@@ -183,7 +183,7 @@ div.tooltip {
 
 .d3-tip {
     line-height: 1;
-    font: 13px sans-serif;
+    font: 10px sans-serif;
     /*font-family: Arial;*/
     padding: 12px;
 /*//  background: rgba(0, 0, 0, 0.8);*/
@@ -236,4 +236,11 @@ div.tooltip {
     display: none;
 }
 
+.wrapper {
+    text-align: center;
+}
 
+.button {
+    position: absolute;
+    top: 50%;
+}

@@ -347,6 +347,8 @@ d3.select("#selectissue").on("change", wrangleData);
 
         }
 
+        console.log(filterData)
+
         // Call updateVis() to draw data
         updateVis();
     }
@@ -363,11 +365,15 @@ d3.select("#selectissue").on("change", wrangleData);
             .append("g")
             .attr("transform", "translate(" + cmargin.left + "," + cmargin.top + ")");
 
+//        console.log("Issue");
+
+
         // Define tooltip
         var tip = d3.tip()
             .attr("class", "d3-tip")
             .offset([5, 0])
-            .html(function(d){return "<p>" + issueScale(d.name)  + "</p> Votes: " + d.votes });
+            .html(function(d){return issueScale(d.name)  + "<br/> Votes: " + d.votes });
+
 
         svg.append("g")
             .attr("class", "x axis")

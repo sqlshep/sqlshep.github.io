@@ -9,7 +9,7 @@ var benWidth = 1000 - benMargin.left - benMargin.right,
 
 var benColor = d3.scale.linear() // create a linear scale
     .domain([1,16])  // input uses min and max values
-    .range([1,.2]);
+    .range([1,.1]);
 
 var benProjection = d3.geo.mercator()
     .scale(190)
@@ -42,6 +42,11 @@ var benIssueFinder = d3.scale.ordinal()
     .range(["ClimateChange", "BetterTransport", "SupportWork", "AccessWater", "BetterHealthcare",
         "GoodEducation", "ResponsiveGovernment", "PhoneInternet", "ReliableEnergy", "AffordableFood",
         "ProtectingForests", "PoliticalFreedoms", "ProtectionCrime", "FreedomDiscrimination", "Equality", "BetterJob"]);
+
+var benColorScale = d3.scale.ordinal()
+    .domain(["100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115"])
+    .range(["#fcb749", "#fbe792", "#233884", "#97d3c9", "#ca3a28", "#47c0be", "#2da9e1", "#7cb5d6", "#a01c40", "#b0d256", "#71be45", "#387195", "#723390", "#dec0ca", "#c84699", "#e8168b"]);
+
 //added
 
 var benPriorityKey = {};
@@ -130,7 +135,7 @@ function benCreateMap(error, data2, data3, data4) {
             if(benRankByCountry[d.properties.name]===undefined){return "#ccc";}
             else {return "green"}});
 
-
+/*
     var opacityRange=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
     var legend = benSvg.selectAll("g.legend")
         .data(opacityRange)
@@ -155,7 +160,7 @@ function benCreateMap(error, data2, data3, data4) {
         .attr("y", function(d,i){return benHeight-130})
         .attr("class", "legend-text")
         .text('Priority 16');
-
+*/
     benUpdateMap();
 }
 
@@ -170,10 +175,36 @@ function benUpdateMap() {
      }
 
      var selectedValue = benIssueFinder(selectedValueOriginal);
+     var benSelectedColor = benColorScale(selectedValueOriginal);
 
-//     console.log("Ben1");
-//     console.log(selectedValue);
-     //added
+    var opacityRange=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+    benSvg.selectAll("g.legend").remove();
+
+    var legend = benSvg.selectAll("g.legend")
+        .data(opacityRange)
+        .enter().append("g")
+        .attr("class", "legend");
+
+    legend.append("rect")
+        .attr("x", 20)
+        .attr("y", function(d, i){ return benHeight - (i*6) -50})
+        .attr("width", 20)
+        .attr("height", 6)
+        .style("fill", benSelectedColor)
+        .style("opacity", function(d,i){return benColor(i)})
+    ;
+    legend.append("text")
+        .attr("x",40)
+        .attr("y", function(d,i){return benHeight-44})
+        .attr("class", "legend-text")
+        .text('Priority 1');
+    legend.append("text")
+        .attr("x",40)
+        .attr("y", function(d,i){return benHeight-130})
+        .attr("class", "legend-text")
+        .text('Priority 16');
+
+    //added
 
     benTooltip = d3.tip().attr('class', 'd3-tip').html(function(d){return d.properties.name + "<br> " + benPriorityKey[selectedValue]
     +"<br> Rank: " + benRankByCountry[d.properties.name][selectedValue]});
@@ -181,6 +212,9 @@ function benUpdateMap() {
         return [200, 0]
     });
     benMap
+//added
+        .attr("fill", benSelectedColor)
+//added
         .attr("fill-opacity",function(d){
             if(benRankByCountry[d.properties.name]===undefined){return 1;}
             else{ return benColor(benRankByCountry[d.properties.name][selectedValue])}

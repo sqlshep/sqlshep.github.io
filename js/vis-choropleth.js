@@ -53,7 +53,6 @@ function loadData() {
             console.log("UNPri = ", UNPri);
 
             map1WrangleData();
-
             topo = countries;
 
             drawMap();
@@ -452,8 +451,9 @@ function mousemove() {
         // advantage that each 'trackball movement' is small, but the disadvantage of
         // potentially accumulating many small drifts (you often see a twist creeping in
         // if you keep rolling the globe around with the mouse button down)
-//    o0 = o1;
-//    m0 = m1;
+
+        //o0 = o1;
+        //m0 = m1;
 
         svg.selectAll("path").attr("d", path);
     }
