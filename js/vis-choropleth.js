@@ -7,7 +7,7 @@ d3.select(window).on("resize", throttle);
 var mapWidth = document.getElementById('map-area').offsetWidth ;
 var mapHeight = mapWidth /2;
 
-//console.log(mapWidth, " ", mapWidth);
+console.log(mapWidth, " ", mapWidth);
 
 //['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']
 
@@ -50,7 +50,7 @@ function loadData() {
 
 
             //console.log("Countries = ",countries);
-            console.log("UNPri = ", UNPri);
+            //console.log("UNPri = ", UNPri);
 
             map1WrangleData();
             topo = countries;
@@ -63,12 +63,12 @@ function loadData() {
 
 
 function drawMap(){
-    projection = d3.geo.orthographic()
+    projection = d3.geo.azimuthalEqualArea()
         .translate([(mapWidth/2), (mapHeight/2)])
         .scale(radius)
        // .translate([radius , radius])
-        .clipAngle(90   )
-        .precision(0.9);
+        .clipAngle(90)
+        .precision(.8);
 
     //projection = d3.geo.mercator()
     //    .translate([(mapWidth/2), (mapHeight/2)])
@@ -150,6 +150,7 @@ function draw(topo) {
         .on("mousemove", function(d) {
 
             var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+            d3.select(this).style('fill-opacity',.5);
             tooltip
                 .classed("hidden", false)
                 .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
@@ -164,6 +165,7 @@ function draw(topo) {
                 updateTable(d);
         })
         .on("mouseout",  function(d) {
+            d3.select(this).style('fill-opacity',1);
             tooltip.classed("hidden", true)
         });
 
@@ -191,14 +193,6 @@ function redraw() {
     draw(topo);
 }
 
-
-
-//function click() {
-//    var latlon = projection.invert(d3.mouse(this));
-//
-//}
-
-
 function move() {
 
     var t = d3.event.translate;
@@ -214,6 +208,7 @@ function move() {
 
     //adjust the country hover stroke mapWidth based on zoom level
     d3.selectAll(".mapCountry").style("stroke-width", 1.5 / s);
+    //d3.selectAll(".mapCountry").style("stroke-width", 1.5 / s);
 }
 
 var throttleTimer;
@@ -252,12 +247,7 @@ function map1WrangleData(){
 
     for (var i = 0; i < countries.length; i++){
 
-        //for (var j = 0 ; j < UNpopulation.length; j++){
-        //    if(countries[i].properties.name.toUpperCase() == UNpopulation[j].Country.toUpperCase()) {
-        //        countries[i].properties.population = parseInt(UNpopulation[j].population);
-        //        countries[i].properties.continent = UNpopulation[j].Continent;
-        //    }
-        //}
+
         for (var k = 0 ; k < UNPri.length; k++){
             //console.log(countries[i].properties.name.toUpperCase());
             if(countries[i].properties.name.toUpperCase() == UNPri[k].countryName.toUpperCase()){
@@ -306,7 +296,7 @@ function map1WrangleData(){
     //
     //}
 
-    console.log("Countries = ",countries);
+    //console.log("Countries = ",countries);
 
 }
 function updateTable(d){
@@ -465,3 +455,5 @@ function mouseup() {
         m0 = null;
     }
 }
+
+
