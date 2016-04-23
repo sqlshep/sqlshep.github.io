@@ -2,19 +2,19 @@
  * Created by Ben on 4/15/2016.
  */
 
-var benMargin = {top: 40, right: 10, bottom: 60, left: 60};
+var benMargin = {top: 1, right: 1, bottom: 1, left: 1};
 
-var benWidth = 1000 - benMargin.left - benMargin.right,
-    benHeight = 600 - benMargin.top - benMargin.bottom;
+var benWidth = 700 - benMargin.left - benMargin.right,
+    benHeight = 500 - benMargin.top - benMargin.bottom;
 
 var benColor = d3.scale.linear() // create a linear scale
     .domain([1,16])  // input uses min and max values
     .range([1,.1]);
 
 var benProjection = d3.geo.mercator()
-    .scale(190)
+    .scale(110)
     .translate([benWidth / 2, benHeight / 2])
-    .center([0,30]);
+    .center([0,20]);
 
 var benPath = d3.geo.path()
     .projection(benProjection);
@@ -29,8 +29,8 @@ var benSvg = d3.select("#map2").append("svg")
 var benBorder = benSvg.append("rect")
     .attr("x", 0)
     .attr("y", 0)
-    .attr("height", 600)
-    .attr("width", 1000)
+    .attr("width", benWidth + benMargin.left + benMargin.right)
+    .attr("height", benHeight + benMargin.top + benMargin.bottom)
     .style("stroke", 'black')
     .style("fill", "none")
     .style("stroke-width", '4px')
@@ -194,15 +194,15 @@ function benUpdateMap() {
         .style("opacity", function(d,i){return benColor(i)})
     ;
     legend.append("text")
-        .attr("x",40)
+        .attr("x",45)
         .attr("y", function(d,i){return benHeight-44})
         .attr("class", "legend-text")
-        .text('Priority 1');
+        .text('Priority: Rank 1');
     legend.append("text")
-        .attr("x",40)
+        .attr("x",45)
         .attr("y", function(d,i){return benHeight-130})
         .attr("class", "legend-text")
-        .text('Priority 16');
+        .text('Priority: Rank 16');
 
     //added
 

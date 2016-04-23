@@ -34,8 +34,8 @@ $('document').ready(function() {
 
     // Set margin, width and height for SVG drawing
     var cmargin = {top:50, right:20, bottom:100,left:60},
-        cwidth = 1100 - cmargin.left - cmargin.right,
-        cheight = 600 - cmargin.top - cmargin.bottom;
+        cwidth = 600 - cmargin.left - cmargin.right,
+        cheight = 700 - cmargin.top - cmargin.bottom;
 
     // Define color and issue domain (same, the 16 issues)
     var colorIssueDomain = ["100", "101","102","103","104","105","106","107","108","109","110","111","112","113","114","115"]
@@ -394,7 +394,7 @@ d3.select("#selectissue").on("change", wrangleData);
             .call(yAxis)
             .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 6)
+            .attr("y", 3)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text("Votes");

@@ -150,7 +150,8 @@ tr:nth-child(even){background-color: #fff}
     border-radius: 5px;
     height:100%;
     overflow:hidden;
-    background: #7FCDFF;
+    background: #FFF;
+    /*background: #C0E6FF;*/
 }
 .hidden {
     display: none;
@@ -166,16 +167,9 @@ div.tooltip {
     position: absolute;
 }
 
-.carousel-content {
-    color:black;
-    display:flex;
-    align-items:center;
-}
 
-#text-carousel {
-    width: 100%;
-    height: 125px;
-    padding: 25px;
+#map2 {
+    padding-top: 100px;
 }
 
 /*********************/

@@ -65,15 +65,9 @@ function loadData() {
 function drawMap(){
     projection = d3.geo.azimuthalEqualArea()
         .translate([(mapWidth/2), (mapHeight/2)])
-        .scale(radius)
-       // .translate([radius , radius])
+        .scale(radius/1.5)
         .clipAngle(90)
-        .precision(.8);
-
-    //projection = d3.geo.mercator()
-    //    .translate([(mapWidth/2), (mapHeight/2)])
-    //    .scale( mapWidth / 2 / Math.PI);
-
+        .precision(.9);
 
 
     path = d3.geo.path()
@@ -150,7 +144,22 @@ function draw(topo) {
         .on("mousemove", function(d) {
 
             var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
-            d3.select(this).style('fill-opacity',.5);
+            d3.select(this).style('fill-opacity',1)
+                .style("fill", function (d){
+                    if (d.properties.HDI >= .8){
+                        return "#008000";
+                    }else  if (d.properties.HDI >= .7){
+                        return "#7CFC00";
+                    }else  if (d.properties.HDI >= .555){
+                        return "#ff0";
+                    }else  if (d.properties.HDI >= 0){
+                        return "#f00";
+                    }
+
+                    //"#fef0d9","#fdcc8a","#fc8d59","#d7301f"
+
+                });
+
             tooltip
                 .classed("hidden", false)
                 .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
@@ -158,6 +167,7 @@ function draw(topo) {
                     "<br>Population: " + (d.properties.population*1000).toLocaleString('en') +
                     "<br>Total Votes: " + d.properties.TotalVotes.toLocaleString('en')+
                     "<br>HDI: " + d.properties.HDI.toLocaleString('en') +
+                    " - <strong>" + d.properties.HDIValue + "</strong>" +
                     "<br>GNI: " + d.properties.GNI.toLocaleString('en') +
                     "<br>Mean School Years: " + d.properties.MeanSchool.toLocaleString('en') +
                     "<br>Life Expectancy: " + d.properties.LifeExpectancy.toLocaleString('en')
@@ -165,7 +175,8 @@ function draw(topo) {
                 updateTable(d);
         })
         .on("mouseout",  function(d) {
-            d3.select(this).style('fill-opacity',1);
+            d3.select(this).style('fill-opacity',1)
+            .style("fill", function(d) { return color(d.properties.population); })
             tooltip.classed("hidden", true)
         });
 
@@ -250,8 +261,21 @@ function map1WrangleData(){
 
         for (var k = 0 ; k < UNPri.length; k++){
             //console.log(countries[i].properties.name.toUpperCase());
-            if(countries[i].properties.name.toUpperCase() == UNPri[k].countryName.toUpperCase()){
+            if(countries[i].properties.name.toUpperCase() == UNPri[k].countryName.toUpperCase()) {
                 countries[i].properties.HDI = parseFloat(UNPri[k].HDI);
+
+                if (countries[i].properties.HDI >= .8) {
+                    countries[i].properties.HDIValue = "Very High";
+                } else if (countries[i].properties.HDI >= .7) {
+                    countries[i].properties.HDIValue = "High";
+                } else if (countries[i].properties.HDI >= .555) {
+                    countries[i].properties.HDIValue = "Medium";
+                } else if (countries[i].properties.HDI >= 0) {
+                    countries[i].properties.HDIValue = "Low";
+                } else {
+                    countries[i].properties.HDIValue = "Unknown"
+                }
+
                 countries[i].properties.ExpectedSchool = parseFloat(UNPri[k].ExpectedSchool);
                 countries[i].properties.GNI = parseInt(UNPri[k].GNI);
                 countries[i].properties.MeanSchool = parseFloat(UNPri[k].MeanSchool);
