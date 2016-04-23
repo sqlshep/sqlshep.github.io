@@ -150,8 +150,8 @@ tr:nth-child(even){background-color: #fff}
     border-radius: 5px;
     height:100%;
     overflow:hidden;
-    background: #FFF;
-    /*background: #C0E6FF;*/
+    /*//background: #FFF;*/
+    background: #C0E6FF;
 }
 .hidden {
     display: none;
@@ -169,7 +169,7 @@ div.tooltip {
 
 
 #map2 {
-    padding-top: 100px;
+    padding-top: 75px;
 }
 
 /*********************/
@@ -244,4 +244,22 @@ div.tooltip {
 .button {
     position: absolute;
     top: 50%;
+}
+
+.browser text {
+    text-anchor: end;
+}
+
+.area {
+    opacity: 0.7;
+    clip-path: url(#clip);
+}
+.area:hover {
+    opacity: 1;
+}
+
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
 }

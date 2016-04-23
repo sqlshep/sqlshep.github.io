@@ -9,11 +9,10 @@ var mapHeight = mapWidth /2;
 
 console.log(mapWidth, " ", mapWidth);
 
-//['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']
 
 var color = d3.scale.linear()
-    .range(['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']);
-    //.range(colorbrewer.RdYlGn[11]);
+    //.range(['ffffff','#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b','#062655']);
+    .range(colorbrewer.RdYlGn[11]);
 
 
 var zoom = d3.behavior.zoom()

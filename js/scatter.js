@@ -11,11 +11,9 @@ ScatterPlot = function(_parentElement, _data){
 ScatterPlot.prototype.initVis = function(){
 	console.log("initVis")
 	var vis = this;
-	vis.margin = { top: 40, right: 10, bottom: 60, left: 60 };
-
-	vis.width = 1000 - vis.margin.left - vis.margin.right,
-	vis.height = 600 - vis.margin.top - vis.margin.bottom;
-
+	vis.margin = { top: 40, right: 150, bottom: 100, left: 60 };
+	vis.width = 800 - vis.margin.left - vis.margin.right,
+		vis.height = 600 - vis.margin.top - vis.margin.bottom;
 	vis.padding = 0;
   // SVG drawing area
 	vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -25,22 +23,21 @@ ScatterPlot.prototype.initVis = function(){
 	    .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
 	// Scales and axes
-  	vis.xScale = d3.scale.sqrt()
+  	vis.xScale = d3.scale.linear()
   		.range([0, vis.width]);
 
 	vis.rScale = d3.scale.log()
-		.range([3, 9]);
+		.range([2, 12]);
 
 	vis.yScale = d3.scale.linear()
 		.range([vis.height, 0]);
 
 	vis.xAxis = d3.svg.axis()
 		.scale(vis.xScale)
-//		.ticks(20, ",.01s")
 		.tickFormat(function (d) {
 			return vis.xScale.tickFormat(20,d3.format(",d"))(d)
 		})
-		  .orient("bottom");
+		.orient("bottom");
 
 	vis.yAxis = d3.svg.axis()
 	    .scale(vis.yScale)
@@ -51,12 +48,11 @@ ScatterPlot.prototype.initVis = function(){
 	    .attr("transform", "translate(0," + vis.height + ")");
 
 	vis.svg.append("g")
-			.attr("class", "y-axis axis");
-
+		.attr("class", "y-axis axis");
 
 	vis.xAxisLabel = vis.svg.append("text")
 		.attr("x", vis.width/2-vis.margin.left)
-		.attr("y", vis.height - vis.margin.bottom/4);
+		.attr("y", vis.height - 5);
 
 	vis.yAxisLabel = vis.svg.append("text")
 		.attr("transform", "rotate(-90)")
@@ -72,8 +68,9 @@ ScatterPlot.prototype.updateData = function updateData() {
 	console.log("updateData");
 	var selectedValueX = rankingtype.options[rankingtype.selectedIndex].value;
 	var selectedValueY = rankingtype1.options[rankingtype1.selectedIndex].value;
-	console.log(selectedValueX + "vs." + selectedValueY)
-	vis.wrangleData(selectedValueX, selectedValueY);
+	var selectedValueCont = rankingtype2.options[rankingtype2.selectedIndex].value;
+	console.log(selectedValueX + " vs " + selectedValueY + " in " + selectedValueCont);
+	vis.wrangleData(selectedValueX, selectedValueY, selectedValueCont);
 }
 
 /*
@@ -81,14 +78,14 @@ ScatterPlot.prototype.updateData = function updateData() {
  */
 
 
-ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY){
+ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY, selectedValueCont){
 	console.log("wrangleData");
 	var vis = this;
 	var xName;
 	var yName;
-	var displayData=[];
-	vis.displayData = vis.data;
-	vis.displayData.forEach(function(d){
+	var test = vis.data;
+
+	test.forEach(function(d){
 		d.Votes = +d.Votes
 		if (selectedValueX == "HDI") {
 			if (!isNaN(d.HDI)) {
@@ -129,99 +126,99 @@ ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY){
 		if (selectedValueY == "x100") {
 			if (!isNaN(d.x100)) {
 				d.yValue = (+d.x100);
-				yName = "Action taken on climate change";
+				yName = "Action Taken on Climate Change";
 			}
 		}
 		if (selectedValueY == "x101") {
 			if (!isNaN(d.x101)) {
 				d.yValue = +d.x101;
-				yName = "Better transport and roads";
+				yName = "Better Transport and Roads";
 			}
 		}
 		if (selectedValueY == "x102") {
 			if (!isNaN(d.x102)) {
 				d.yValue = +d.x102;
-				yName = "Support for people who can't work";
+				yName = "Support for People Who Can't Work";
 			}
 		}
 		if (selectedValueY == "x103") {
 			if (!isNaN(d.x103)) {
 				d.yValue = +d.x103;
-				yName = "Access to clean water and sanitation";
+				yName = "Access to Clean Water and Sanitation";
 			}
 		}
 		if (selectedValueY == "x104") {
 			if (!isNaN(d.x104)) {
 				d.yValue = +d.x104;
-				yName = "Better healthcare";
+				yName = "Better Healthcare";
 
 			}
 		}
 		if (selectedValueY == "x105") {
 			if (!isNaN(d.x105)) {
 				d.yValue = +d.x105;
-				yName = "A good education";
+				yName = "A Good Education";
 
 			}
 		}
 		if (selectedValueY == "x106") {
 			if (!isNaN(d.x106)) {
 				d.yValue = +d.x106;
-				yName = "A responsive government we can trust";
+				yName = "A Responsive Government We Can Trust";
 			}
 		}
 		if (selectedValueY == "x107") {
 			if (!isNaN(d.x107)) {
 				d.yValue = +d.x107;
-				yName = "Phone and internet access";
+				yName = "Phone and Internet Access";
 			}
 		}
 		if (selectedValueY == "x108") {
 			if (!isNaN(d.x108)) {
 				d.yValue = +d.x108;
-				yName = "Reliable energy at home";
+				yName = "Reliable Energy at Home";
 			}
 		}
 		if (selectedValueY == "x109") {
 			if (!isNaN(d.x109)) {
 				d.yValue = +d.x109;
-				yName = "Affordable and nutritious food";
+				yName = "Affordable and Nutritious Food";
 			}
 		}
 		if (selectedValueY == "x110") {
 			if (!isNaN(d.x110)) {
 				d.yValue = +d.x110;
-				yName = "Protecting forests, rivers and oceans";
+				yName = "Protecting Forests, Rivers and Oceans";
 			}
 		}
 		if (selectedValueY == "x111") {
 			if (!isNaN(d.x111)) {
 				d.yValue = +d.x111;
-				yName = "Political freedoms";
+				yName = "Political Freedoms";
 			}
 		}
 		if (selectedValueY == "x112") {
 			if (!isNaN(d.x112)) {
 				d.yValue = +d.x112;
-				yName = "Protection against crime and violence";
+				yName = "Protection Against Crime and Violence";
 			}
 		}
 		if (selectedValueY == "x113") {
 			if (!isNaN(d.x113)) {
 				d.yValue = +d.x113;
-				yName = "Freedom from discrimination and persecution";
+				yName = "Freedom from Discrimination and Persecution";
 			}
 		}
 		if (selectedValueY == "x114") {
 			if (!isNaN(d.x114)) {
 				d.yValue = +d.x114;
-				yName = "Equality between men and women";
+				yName = "Equality Between Men and Women";
 			}
 		}
 		if (selectedValueY == "x115") {
 			if (!isNaN(d.x115)) {
 				d.yValue = +d.x115;
-				yName = "Better job opportunities";
+				yName = "Better Job Opportunities";
 			}
 		}
 		if (selectedValueY == "Votes") {
@@ -231,15 +228,14 @@ ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY){
 			}
 		}
 		});
-	vis.displayData = vis.displayData.sort(function(a,b) {return (b.Votes - a.Votes)});
-	vis.updateVis(vis.displayData, xName, yName);
+
+	vis.displayData = test.sort(function(a,b) {return (b.Votes - a.Votes)});
+	vis.updateVis(xName, yName, selectedValueCont);
 	}
 
-
-ScatterPlot.prototype.updateVis = function(displayData, xName, yName){
+ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 	console.log("updateVis");
 	var vis = this;
-	vis.displayData = displayData;
 	var xMin = 0.9*d3.min(vis.displayData, function(d) { return d.xValue; });
 	var xMax = 1.1*d3.max(vis.displayData, function(d) { return d.xValue; });
 	var yMin = 0;
@@ -247,12 +243,14 @@ ScatterPlot.prototype.updateVis = function(displayData, xName, yName){
 	vis.xScale.domain([xMin, xMax]);
 	vis.yScale.domain([yMin, yMax]);
 
-//	vis.xScale.domain(d3.extent(vis.displayData, function(d) { return d.xValue; }));
-//	vis.yScale.domain(d3.extent(vis.displayData, function(d) { return d.yValue/ d.Votes; }));
 	vis.rScale.domain(d3.extent(vis.displayData, function(d) { return d.Votes; }));
 
 	vis.xAxisLabel.text(xName);
 	vis.yAxisLabel.text("% of Votes for : " + yName);
+
+	var continentVar = ["Asia", "Africa", "Europe", "North America", "South America", "AustraliaPacificIslands"];
+	var colorScale = d3.scale.category10()
+		.domain(continentVar);
 
 	var circle = vis.svg.selectAll("circle")
 		.data(vis.data);
@@ -267,7 +265,17 @@ ScatterPlot.prototype.updateVis = function(displayData, xName, yName){
 		.attr("r",function(d) { return vis.rScale(d.Votes) })
 		.attr("cx", function(d) { return vis.xScale(d.xValue) })
 		.attr("cy", function(d) { return vis.yScale(d.yValue/ d.Votes) })
-		.attr("opacity", 0.7)
+		.attr("data-legend",function(d) { return d.Continent})
+		.attr("fill", function(d) { return colorScale(d.Continent) })
+		.attr("opacity", function(d) {
+			if (selectedValueCont == "ALL") { return 1;}
+			if (d.Continent == selectedValueCont) {return 1;}
+			else {return 0;}
+		})
+		.attr("stroke", "black");
+
+
+
 
 	circle.select("title").text(function(d) { return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total") });
 
@@ -285,5 +293,34 @@ ScatterPlot.prototype.updateVis = function(displayData, xName, yName){
 		.style("text-anchor", "start");
 
 	vis.svg.select(".y-axis").call(vis.yAxis);
+
+	var legend = vis.svg.selectAll("g.legend")
+		.data(continentVar )
+		.enter().append("g")
+		.attr("class", "legend");
+
+	legend.append("rect")
+		.attr("x", vis.width - 45)
+		.attr("y", function(d, i){ return vis.height - 75 + (i*12) })
+		.attr("width", 10)
+		.attr("height", 10)
+		.attr("stroke", "black")
+		.style("fill", function(d){return colorScale(d);});
+
+	legend.append("text")
+		.attr("x",vis.width - 30)
+		.attr("y", function(d,i){return vis.height - 65 + (i*12)})
+		.attr("class", "legend-text")
+		.text(function(d){
+			if (d == "AustraliaPacificIslands") { return "Australia & Pacific Islands";}
+			else {return d;}
+		});
+
+	legend.append("text")
+		.attr("x",vis.width - 45)
+		.attr("y", vis.height - 80)
+		.attr("class", "legend-text")
+		.text("Point Size ~ log(#voters)");
+
 }
 

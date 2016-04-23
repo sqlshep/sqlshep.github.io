@@ -5,7 +5,7 @@
 var benMargin = {top: 1, right: 1, bottom: 1, left: 1};
 
 var benWidth = 700 - benMargin.left - benMargin.right,
-    benHeight = 500 - benMargin.top - benMargin.bottom;
+    benHeight = 550 - benMargin.top - benMargin.bottom;
 
 var benColor = d3.scale.linear() // create a linear scale
     .domain([1,16])  // input uses min and max values
@@ -25,16 +25,16 @@ var benSvg = d3.select("#map2").append("svg")
     .attr("height", benHeight + benMargin.top + benMargin.bottom)
     .append("g")
     .attr("transform", "translate(" - benMargin.left + "," - benMargin.top + ")");
-
-var benBorder = benSvg.append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", benWidth + benMargin.left + benMargin.right)
-    .attr("height", benHeight + benMargin.top + benMargin.bottom)
-    .style("stroke", 'black')
-    .style("fill", "none")
-    .style("stroke-width", '4px')
-    ;
+//
+//var benBorder = benSvg.append("rect")
+//    .attr("x", 0)
+//    .attr("y", 0)
+//    .attr("width", benWidth + benMargin.left + benMargin.right)
+//    .attr("height", benHeight + benMargin.top + benMargin.bottom)
+//    .style("stroke", 'black')
+//    .style("fill", "none")
+//    .style("stroke-width", '4px')
+//    ;
 
 //added
 var benIssueFinder = d3.scale.ordinal()
@@ -209,7 +209,7 @@ function benUpdateMap() {
     benTooltip = d3.tip().attr('class', 'd3-tip').html(function(d){return d.properties.name + "<br> " + benPriorityKey[selectedValue]
     +"<br> Rank: " + benRankByCountry[d.properties.name][selectedValue]});
     benTooltip.offset(function() {
-        return [200, 0]
+        return [0  , 0]
     });
     benMap
 //added

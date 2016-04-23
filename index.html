@@ -555,49 +555,62 @@
 
 <h1> Visualization 3 Vidya </h1>
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <div class="row">
-            <div class="col-md-12">
-                <h1>What Factors Motivate Priorities ? </h1>
-                <!-- Visualization placeholders -->
-                <div class="form-group">
-                    <label for="rankingType">Select Demographic Variable</label>
-                    <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
-                        <option value="HDI">Human Development Index</option>
-                        <option value="LifeExpectancy">Life Expectancy</option>
-                        <option value="ExpectedSchool">Expected Years of Schooling</option>
-                        <option value="MeanSchool">Mean Years of Schooling</option>
-                        <option value="GNI">Gross National Income Per Capita</option>
-                        <option value="Population">Population</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="rankingType">Select Survey Priority</label>
-                    <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
-                        <option value="x100">Action taken on climate change</option>
-                        <option value="x101">Better transport and roads</option>
-                        <option value="x102">Support for people who can't work</option>
-                        <option value="x103">Access to clean water and sanitation</option>
-                        <option value="x104">Better healthcare</option>
-                        <option value="x105">A good education</option>
-                        <option value="x106">A responsive government we can trust</option>
-                        <option value="x107">Phone and internet access</option>
-                        <option value="x108">Reliable energy at home</option>
-                        <option value="x109">Affordable and nutritious food</option>
-                        <option value="x110">Protecting forests, rivers and oceans</option>
-                        <option value="x111">Political freedoms</option>
-                        <option value="x112">Protection against crime and violence</option>
-                        <option value="x113">Freedom from discrimination and persecution</option>
-                        <option value="x114">Equality between men and women</option>
-                        <option value="x115">Better job opportunities</option>
-                    </select>
-                </div>
-                <div id="scatterVB"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>What Factors Motivate Priorities ? </h1>
+            <!-- Visualization placeholders -->
+            <div class="form-inline">
+                <label for="rankingType">Select Demographic Variable</label>
+                <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
+                    <option value="HDI">Human Development Index</option>
+                    <option value="LifeExpectancy">Life Expectancy</option>
+                    <option value="ExpectedSchool">Expected Years of Schooling</option>
+                    <option value="MeanSchool">Mean Years of Schooling</option>
+                    <option value="GNI">Gross National Income Per Capita</option>
+                    <option value="Population">Population</option>
+                </select>
             </div>
-        </div>
+            <div class="form-inline">
+                <label for="rankingType">Select Survey Priority</label>
+                <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
+                    <option value="x100">Action taken on climate change</option>
+                    <option value="x101">Better transport and roads</option>
+                    <option value="x102">Support for people who can't work</option>
+                    <option value="x103">Access to clean water and sanitation</option>
+                    <option value="x104">Better healthcare</option>
+                    <option value="x105">A good education</option>
+                    <option value="x106">A responsive government we can trust</option>
+                    <option value="x107">Phone and internet access</option>
+                    <option value="x108">Reliable energy at home</option>
+                    <option value="x109">Affordable and nutritious food</option>
+                    <option value="x110">Protecting forests, rivers and oceans</option>
+                    <option value="x111">Political freedoms</option>
+                    <option value="x112">Protection against crime and violence</option>
+                    <option value="x113">Freedom from discrimination and persecution</option>
+                    <option value="x114">Equality between men and women</option>
+                    <option value="x115">Better job opportunities</option>
+                </select>
+            </div>
+            <div class="form-inline">
+                <label for="rankingType">Select Continent</label>
+                <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
+                    <option value="ALL">ALL</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                    <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
+                </select>
+            </div>
 
+            <div id="scatterVB"></div>
+        </div>
     </div>
+
+</div>
 
 <hr/>
 
