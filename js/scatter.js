@@ -277,7 +277,11 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 
 
 
-	circle.select("title").text(function(d) { return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total") });
+	circle.select("title").text(function(d) {
+		if (selectedValueCont == "ALL") { return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total"); }
+		if (d.Continent == selectedValueCont) {return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total") }
+		else {return "";}}
+		);
 
 // Exit
 	circle.exit().remove("circle");
