@@ -6,10 +6,6 @@
 	<title>CS171 Final Project</title>
 
 
-    <!--Clippy -->
-
-    <link rel="stylesheet" type="text/css" href="css/clippy.css" media="all">
-
 
     <!-- Load Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
@@ -90,9 +86,6 @@
             </p>
         </div>
 </div>
-
-    <h1>Visualization 1 Shep</h1>
-<br/><br/>
 
 <h3><div id="countryName">  </div></h3>
 <div class="container-fluid">
@@ -217,13 +210,7 @@
             </div>
         </div>
 
-
-
     <hr/>
-
-
-            <h1>Visualization 2 Casey</h1>
-
             <form class="form-inline">
                 <div class="form-group">
                     <label> </label>
@@ -476,8 +463,8 @@
             </form>
 
             <div class="row">
-                <div class="col-md-5 stackedbarchart"></div>
-                <div class="col-md-7" id="map2" align="right">
+                <div class="col-md-5 stackedbarchart" align="center"></div>
+                <div class="col-md-7" id="map2" align="center">
             </div>
         </div>
     </div>
@@ -487,7 +474,7 @@
 
     <!--<h1>Visualization 4 Ben</h1>-->
 
-    <hr/>
+
     <!--<div class="container">-->
         <!--<div id="map2">-->
 
@@ -564,16 +551,27 @@
 
 <hr/>
 
-<h1> Visualization 3 Vidya </h1>
 
 <div class="container-fluid">
 
-    <div class="row">
+    <div class="row" >
         <div class="col-md-12">
             <h1>What Factors Motivate Priorities ? </h1>
             <!-- Visualization placeholders -->
             <div class="form-inline">
-                <label for="rankingType">Select Demographic Variable</label>
+                <label id="vDropDown" for="rankingType">Select Continent</label>
+                <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
+                    <option value="ALL">ALL</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                    <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
+                </select>
+            </div>
+            <div class="form-inline">
+                <label id="vDropDown" for="rankingType">Select Demographic Variable</label>
                 <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
                     <option value="HDI">Human Development Index</option>
                     <option value="LifeExpectancy">Life Expectancy</option>
@@ -584,7 +582,7 @@
                 </select>
             </div>
             <div class="form-inline">
-                <label for="rankingType">Select Survey Priority</label>
+                <label id="vDropDown" for="rankingType">Select Survey Priority</label>
                 <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
                     <option value="x100">Action taken on climate change</option>
                     <option value="x101">Better transport and roads</option>
@@ -604,18 +602,7 @@
                     <option value="x115">Better job opportunities</option>
                 </select>
             </div>
-            <div class="form-inline">
-                <label for="rankingType">Select Continent</label>
-                <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
-                    <option value="ALL">ALL</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Europe">Europe</option>
-                    <option value="North America">North America</option>
-                    <option value="South America">South America</option>
-                    <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
-                </select>
-            </div>
+
 
             <div id="scatterVB"></div>
         </div>
@@ -663,10 +650,6 @@
 
         </div>
     </div>
-
-<!--Clippy -->
-
-    <script src="js/clippy.min.js"></script>
 
 
 <!-- Load JS libraries -->

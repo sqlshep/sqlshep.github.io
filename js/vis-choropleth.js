@@ -65,7 +65,7 @@ function loadData() {
 
 function drawMap(){
 
-    projection = d3.geo.azimuthalEquidistant()
+    projection = d3.geo.azimuthalEqualArea()
     //projection = d3.geo.azimuthalEqualArea()
         .translate([(mapWidth/2), (mapHeight/2)])
         .scale(radius/1.5)
