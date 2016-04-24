@@ -3,6 +3,7 @@ clippy.load('Clippy', function(agent) {
     // Do anything with the loaded agent
     agent.show();
     //agent.moveTo(50,50);
+    agent.animate();
     agent.speak("Thanks for stopping by ");
     agent.animate();
 
