@@ -28,10 +28,12 @@ var tooltip = d3.select("#map-area").append("div").attr("class", "tooltip hidden
 
 var radius = mapHeight/2;
 
+
 loadData();
 
 
 function loadData() {
+
     //population file from here
     //http://esa.un.org/unpd/wpp/Download/Standard/Population/
 
@@ -62,25 +64,31 @@ function loadData() {
 
 
 function drawMap(){
-    projection = d3.geo.azimuthalEqualArea()
+
+    projection = d3.geo.azimuthalEquidistant()
+    //projection = d3.geo.azimuthalEqualArea()
         .translate([(mapWidth/2), (mapHeight/2)])
         .scale(radius/1.5)
         .clipAngle(90)
-        .precision(.9);
+        .precision(1);
 
 
-    path = d3.geo.path()
-        .projection(projection);
 
     svg = d3.select("#map-area").append("svg")
         .attr("width", mapWidth)
         .attr("height", mapHeight)
         .call(zoom)
-        //.on("click", click)
         .on("mousedown", mousedown)
         .on("mousemove", mousemove)
         .on("mouseup", mouseup)
         .append("g");
+
+
+
+    path = d3.geo.path()
+        .projection(projection);
+
+
 
     g = svg.append("g");
 
@@ -190,7 +198,6 @@ function draw(topo) {
         .attr("class", "legend");
 
     updateLegend(maxValue);
-
 
 
 }

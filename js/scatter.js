@@ -12,7 +12,7 @@ ScatterPlot.prototype.initVis = function(){
 	console.log("initVis")
 	var vis = this;
 	vis.margin = { top: 40, right: 150, bottom: 100, left: 60 };
-	vis.width = 800 - vis.margin.left - vis.margin.right,
+	vis.width = 1200 - vis.margin.left - vis.margin.right,
 		vis.height = 600 - vis.margin.top - vis.margin.bottom;
 	vis.padding = 0;
   // SVG drawing area
