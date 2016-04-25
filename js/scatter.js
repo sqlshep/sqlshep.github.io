@@ -12,7 +12,7 @@ ScatterPlot.prototype.initVis = function(){
 	console.log("initVis")
 	var vis = this;
 	vis.margin = { top: 40, right: 150, bottom: 100, left: 60 };
-	vis.width = 1200 - vis.margin.left - vis.margin.right,
+	vis.width = 900 - vis.margin.left - vis.margin.right,
 		vis.height = 600 - vis.margin.top - vis.margin.bottom;
 	vis.padding = 0;
   // SVG drawing area
@@ -44,8 +44,9 @@ ScatterPlot.prototype.initVis = function(){
 	    .orient("left");
 
 	vis.svg.append("g")
-	    .attr("class", "x-axis axis")
-	    .attr("transform", "translate(0," + vis.height + ")");
+		.attr("class", "x-axis axis")
+		.attr("clip-path", "url(#clip)")
+		.attr("transform", "translate(0," + vis.height + ")");
 
 	vis.svg.append("g")
 		.attr("class", "y-axis axis");
@@ -59,6 +60,34 @@ ScatterPlot.prototype.initVis = function(){
 		.attr("y", -vis.margin.left/1.25)
 		.attr("x", -vis.height/1.25);
 
+	vis.brush = d3.svg.brush()
+		.x(vis.xScale);
+
+	vis.clear_button = vis.svg.append('text')
+		.attr("y", 0)
+		.attr("x", vis.margin.left)
+		.attr("class", "clear-button")
+		.text("Click here to Reset Plot")
+		.attr("font-weight", "bold")
+		.attr("font-size", "16px")
+		.attr("fill", "red")
+		.attr("stroke", "white")
+		.attr("stroke-width", ".2px");
+
+	vis.svg.append("g")
+		.attr("class", "brush")
+		.call(vis.brush)
+		.selectAll('rect')
+		.attr('height', vis.height);
+
+	vis.svg.append("defs")
+		.append("clipPath")
+		.attr("id", "clip")
+		.append("rect")
+		.attr("width", vis.width)
+		.attr("height", vis.height + 20);
+
+	console.log(vis.xScale.range())
 	// TO-DO: (Filter, aggregate, modify data)
 	vis.updateData();
 }
@@ -235,11 +264,31 @@ ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY, sel
 
 ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 	console.log("updateVis");
+
+	d3.helper = {};
+
+	d3.helper.tooltip = function(){
+
+		var bodyNode = d3.select('body').node();
+		function tooltip(selection){
+			selection.on('mouseover.tooltip', function(pD, pI){
+					var absoluteMousePos = d3.mouse(bodyNode);
+				})
+				.on('mousemove.tooltip', function(pD, pI){
+					// Move tooltip
+					var absoluteMousePos = d3.mouse(bodyNode);
+				})
+		}
+		return tooltip;
+	};
+
+
 	var vis = this;
 	var xMin = 0.9*d3.min(vis.displayData, function(d) { return d.xValue; });
 	var xMax = 1.1*d3.max(vis.displayData, function(d) { return d.xValue; });
 	var yMin = 0;
 	var yMax = 1.1*d3.max(vis.displayData, function(d) { return d.yValue/ d.Votes; });
+
 	vis.xScale.domain([xMin, xMax]);
 	vis.yScale.domain([yMin, yMax]);
 
@@ -254,9 +303,10 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 
 	var circle = vis.svg.selectAll("circle")
 		.data(vis.data);
-// Enter (initialize the newly added elements)
+
 	circle.enter().append("circle")
 		.attr("class", "dot")
+		.attr("clip-path", "url(#clip)")
 		.append("svg:title")
 			.text(function(d) { return ("hi") ; });
 
@@ -272,16 +322,90 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 			if (d.Continent == selectedValueCont) {return 1;}
 			else {return 0;}
 		})
-		.attr("stroke", "black");
-
-
-
+		.attr("stroke", "black")
+		.call(d3.helper.tooltip());
+	;
 
 	circle.select("title").text(function(d) {
 		if (selectedValueCont == "ALL") { return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total"); }
 		if (d.Continent == selectedValueCont) {return (d.countryName + "\n" + xName + " = " + d.xValue + "\n" + d.yValue + " Votes / " + d.Votes+ " Total") }
 		else {return "";}}
 		);
+
+
+	vis.brush
+		.on('brush', function(){
+
+			var extent = vis.brush.extent()
+
+			circle.classed("selected", function(d) {
+				is_brushed = extent[0] <= d.xValue && d.xValue <= extent[1];
+				return is_brushed;
+
+			});
+
+		})
+
+	vis.brush
+		.on('brushend', function(){
+			var new_xMin = 0.9*vis.brush.extent()[0];
+			var new_xMax = 1.1*vis.brush.extent()[1];
+			vis.xScale.domain([new_xMin, new_xMax]);
+
+			vis.svg
+				.selectAll(".dot")
+					.data(vis.displayData)
+				.transition()
+				.duration(500)
+				.attr("cx", function(d) {
+					return vis.xScale(d.xValue);
+				})
+			circle.classed("selected", false);
+			d3.select(".brush").call(vis.brush.clear());
+			vis.svg.select(".x-axis")
+				.call(vis.xAxis)
+				.selectAll("text")
+				.attr("y", 0)
+				.attr("x", 9)
+				.attr("dy", ".35em")
+				.attr("transform", "rotate(90)")
+				.style("text-anchor", "start");
+		})
+
+	vis.clear_button.on('click', function(){
+		vis.xScale.domain([xMin, xMax]);
+		transition();
+		reset_axis();
+	});
+
+	function transition() {
+		console.log("transitionAxes");
+		vis.xScale.domain([xMin, xMax]);
+		vis.svg
+			.selectAll(".dot")
+			.data(vis.displayData)
+			.transition()
+			.duration(500)
+			.attr("cx", function(d) {
+				return vis.xScale(d.xValue);
+			})
+	}
+
+	function reset_axis() {
+		vis.xScale.domain([xMin, xMax]);
+		console.log("resetAxes");
+		vis.svg
+			.transition()
+			.duration(500)
+			.select(".x-axis")
+			.call(vis.xAxis)
+			.selectAll("text")
+			.attr("y", 0)
+			.attr("x", 9)
+			.attr("dy", ".35em")
+			.attr("transform", "rotate(90)")
+			.style("text-anchor", "start");
+	}
 
 // Exit
 	circle.exit().remove("circle");
@@ -304,16 +428,16 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 		.attr("class", "legend");
 
 	legend.append("rect")
-		.attr("x", vis.width - 45)
-		.attr("y", function(d, i){ return vis.height - 75 + (i*12) })
-		.attr("width", 10)
-		.attr("height", 10)
+		.attr("x", vis.width - 35)
+		.attr("y", function(d, i){ return vis.height - 115 + (i*18) })
+		.attr("width", 15)
+		.attr("height", 15)
 		.attr("stroke", "black")
 		.style("fill", function(d){return colorScale(d);});
 
 	legend.append("text")
-		.attr("x",vis.width - 30)
-		.attr("y", function(d,i){return vis.height - 65 + (i*12)})
+		.attr("x",vis.width - 15)
+		.attr("y", function(d,i){return vis.height - 105 + (i*18)})
 		.attr("class", "legend-text")
 		.text(function(d){
 			if (d == "AustraliaPacificIslands") { return "Australia & Pacific Islands";}
@@ -321,8 +445,8 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 		});
 
 	legend.append("text")
-		.attr("x",vis.width - 45)
-		.attr("y", vis.height - 80)
+		.attr("x",vis.width - 35)
+		.attr("y", vis.height - 120)
 		.attr("class", "legend-text")
 		.text("Point Size ~ log(#voters)");
 
