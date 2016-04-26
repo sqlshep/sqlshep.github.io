@@ -39,10 +39,7 @@ function loadData() {
 
     queue()
         .defer(d3.json, "data/world-topo.json")
-        //.defer(d3.csv, "data/UN-Population.csv")
-        //.defer(d3.csv, "data/TotalVotesPerPriorityByCountry.csv")
         .defer(d3.csv, "data/Shep-Priority.csv")
-        //.defer(d3.csv, "data/Priority.csv")
         .await(function (error, world,priorities ) {
             countries = topojson.feature(world, world.objects.countries).features;
             //UNpopulation = population;
