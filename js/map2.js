@@ -2,19 +2,26 @@
  * Created by Ben on 4/15/2016.
  */
 
+
+
 var benMargin = {top: 1, right: 1, bottom: 1, left: 1};
+//var benWidth = 550 - benMargin.left - benMargin.right,
+//    benHeight = 400 - benMargin.top - benMargin.bottom;
 
-var benWidth = 700 - benMargin.left - benMargin.right,
-    benHeight = 550 - benMargin.top - benMargin.bottom;
 
+var benWidth = (document.getElementById('map-area').offsetWidth *.6) - benMargin.left - benMargin.right,
+    benHeight = benWidth
+
+console.log(benWidth);
 var benColor = d3.scale.linear() // create a linear scale
     .domain([1,16])  // input uses min and max values
     .range([1,.1]);
 
 var benProjection = d3.geo.mercator()
-    .scale(110)
+    //.scale(100)
+    .scale((benHeight/2)/3)
     .translate([benWidth / 2, benHeight / 2])
-    .center([0,20]);
+    .center([-10,40]);
 
 var benPath = d3.geo.path()
     .projection(benProjection);
@@ -165,7 +172,6 @@ function benCreateMap(error, data2, data3, data4) {
 }
 
 function benUpdateMap() {
-//    var selectedValue = document.getElementById("selected-priority").value;
 
      //added
      var selectedValueOriginal = document.getElementById("selectissue").value;
@@ -178,6 +184,7 @@ function benUpdateMap() {
      var benSelectedColor = benColorScale(selectedValueOriginal);
 
     var opacityRange=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+
     benSvg.selectAll("g.legend").remove();
 
     var legend = benSvg.selectAll("g.legend")

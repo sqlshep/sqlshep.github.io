@@ -12,8 +12,10 @@ ScatterPlot.prototype.initVis = function(){
 	console.log("initVis")
 	var vis = this;
 	vis.margin = { top: 40, right: 150, bottom: 100, left: 60 };
-	vis.width = 900 - vis.margin.left - vis.margin.right,
-		vis.height = 600 - vis.margin.top - vis.margin.bottom;
+	vis.width = document.getElementById('scatterVB').offsetWidth - vis.margin.left - vis.margin.right,
+	//vis.width = 1000 - vis.margin.left - vis.margin.right,
+	//vis.height = 600 - vis.margin.top - vis.margin.bottom;
+	vis.height = (vis.width/1.5) - vis.margin.top - vis.margin.bottom;
 	vis.padding = 0;
   // SVG drawing area
 	vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -72,7 +74,10 @@ ScatterPlot.prototype.initVis = function(){
 		.attr("font-size", "16px")
 		.attr("fill", "red")
 		.attr("stroke", "white")
-		.attr("stroke-width", ".2px");
+		.attr("stroke-width", ".2px")
+		.on("mouseover",function() {
+			d3.select(this)
+				.attr("cursor", "pointer");});
 
 	vis.svg.append("g")
 		.attr("class", "brush")
@@ -87,18 +92,18 @@ ScatterPlot.prototype.initVis = function(){
 		.attr("width", vis.width)
 		.attr("height", vis.height + 20);
 
-	console.log(vis.xScale.range())
+	//console.log(vis.xScale.range())
 	// TO-DO: (Filter, aggregate, modify data)
 	vis.updateData();
 }
 
 ScatterPlot.prototype.updateData = function updateData() {
 	var vis = this;
-	console.log("updateData");
+	//console.log("updateData");
 	var selectedValueX = rankingtype.options[rankingtype.selectedIndex].value;
 	var selectedValueY = rankingtype1.options[rankingtype1.selectedIndex].value;
 	var selectedValueCont = rankingtype2.options[rankingtype2.selectedIndex].value;
-	console.log(selectedValueX + " vs " + selectedValueY + " in " + selectedValueCont);
+	//console.log(selectedValueX + " vs " + selectedValueY + " in " + selectedValueCont);
 	vis.wrangleData(selectedValueX, selectedValueY, selectedValueCont);
 }
 
@@ -108,7 +113,7 @@ ScatterPlot.prototype.updateData = function updateData() {
 
 
 ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY, selectedValueCont){
-	console.log("wrangleData");
+	//console.log("wrangleData");
 	var vis = this;
 	var xName;
 	var yName;
@@ -263,7 +268,7 @@ ScatterPlot.prototype.wrangleData = function(selectedValueX, selectedValueY, sel
 	}
 
 ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
-	console.log("updateVis");
+	//console.log("updateVis");
 
 	d3.helper = {};
 
@@ -379,7 +384,7 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 	});
 
 	function transition() {
-		console.log("transitionAxes");
+		//console.log("transitionAxes");
 		vis.xScale.domain([xMin, xMax]);
 		vis.svg
 			.selectAll(".dot")
@@ -393,7 +398,7 @@ ScatterPlot.prototype.updateVis = function( xName, yName, selectedValueCont){
 
 	function reset_axis() {
 		vis.xScale.domain([xMin, xMax]);
-		console.log("resetAxes");
+		//console.log("resetAxes");
 		vis.svg
 			.transition()
 			.duration(500)

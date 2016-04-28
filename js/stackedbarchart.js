@@ -32,10 +32,20 @@ $('document').ready(function() {
     var continent115TotalVote;
     var continentTotalVote;
 
-    // Set margin, width and height for SVG drawing
-    var cmargin = {top:50, right:20, bottom:100,left:60},
-        cwidth = 600 - cmargin.left - cmargin.right,
-        cheight = 700 - cmargin.top - cmargin.bottom;
+
+    //
+    //// Set margin, width and height for SVG drawing
+    //var cmargin = {top:50, right:20, bottom:110,left:60},
+    //    cwidth = 500 - cmargin.left - cmargin.right,
+    //    cheight = 500 - cmargin.top - cmargin.bottom;
+
+
+    var cmargin = {top:150, right:20, bottom:60,left:60},
+        cwidth =  (document.getElementById('map-area').offsetWidth *.4) - cmargin.left - cmargin.right,
+        cheight = cwidth*1.25;
+
+
+
 
     // Define color and issue domain (same, the 16 issues)
     var colorIssueDomain = ["100", "101","102","103","104","105","106","107","108","109","110","111","112","113","114","115"]

@@ -48,6 +48,10 @@
     right: 0px;
 }
 
+/*img {*/
+    /*display: inline-block;*/
+/*}*/
+
 
 h1{font-family: 'Roboto', sans-serif;
     font-size: 40px;
@@ -150,8 +154,9 @@ tr:nth-child(even){background-color: #fff}
     border-radius: 5px;
     height:100%;
     overflow:hidden;
-    background: #2BBBFF;
-    //background: #C0E6FF;
+    background: #1C6BA0;
+    /*background: #2BBBFF;*/
+    /*background: #C0E6FF;*/
 }
 
 .hidden {
@@ -170,7 +175,7 @@ div.tooltip {
 
 
 #map2 {
-    padding-top: 75px;
+    padding-top: 50px;
 }
 
 /*********************/
@@ -265,18 +270,17 @@ div.tooltip {
     shape-rendering: crispEdges;
 }
 
-@media all and (max-width: 1360px) {
-    #map2, .stackedbarchart {
-        width:100%;
-    }
-}
+/*@media all and (max-width: 1360px) {*/
+    /*#map2, .stackedbarchart {*/
+        /*width:100%;*/
+    /*}*/
+/*}*/
 
 .form-inline {
     width: 30%;
-    padding: 1px 20px;
-    margin: 8px 0;
+    padding: 1px 1px;
+    margin: 0px ;
     display: inline-block;
-    /*border: 1px solid #ccc;*/
-    /*border-radius: 4px;*/
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
+
 }

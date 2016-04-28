@@ -24,70 +24,73 @@
 
 
 <br/><br/>
-<img src="img/logo.png" width="50%"  >
-<br/><br/>
+<img src="img/logo.png" width="40%"  >
+<!--<img src="img/UNSDG_Logo_2015_EN.png" width="60%"  >-->
+<br/><br/><br/><br/>
 
-
-<hr/>
 
 <div class="container-fluid">
 	<div class="row">
 
-		<div class="col-md-6" id ="page1Col1"><br><p>
-            The Millennium Project was originally commissioned by the UN in 2002 and chose 8 Goals, listed in the crawl
-            above their mission was to reduce hunger, poverty, disease, increase access to education for 177 countries
+		<div class="col-md-6" id ="page1Col1"><p>
+            The Millennium Project was originally commissioned by the UN in 2002 and chose 8 Goals, their mission was to
+            reduce hunger, poverty, disease, increase access to education for 177 countries
             in extreme need.  The program continued until 2007 when the program was integrated into the United Nations
             Development Program.
 
-            In 2013 a new set of goals was selected and the citizens from 195 countries were allowed to vote on what is most important to them.
-            The results of this most recent survey will be used to define the direction for the next 15 years.
+            <br/><br/>
+            From this project, MYWorld was introduced, a global survey for citizens led by the United Nations
+            and and over 600 partners. Its aim was to capture people's voice, priorities and views, so that global leaders can be
+            informed as they begin the process of defining the new development agenda for the coming 15 years.
+
 
             <br/><br/>
-            MY World is a global survey for citizens led by the United Nations
-            and partners. It aims to capture people's voices, priorities and views, so that global leaders can be
-            informed as they begin the process of defining the new development agenda for the world.
-            <br/><br/>
-            Through creative online and offline methods, MY World asks individuals which six of
-            sixteen possible issues they think would make the most difference to their lives. The sixteen
+            Started in 2013, through creative online and offline methods, MYWorld asked individuals which six of
+            sixteen possible issues they think would make the most difference in their lives. The sixteen
             issues have been built up from the priorities expressed by poor people in existing research and polling
             exercises and they cover the existing Millennium Development Goals, plus issues of sustainability, security,
             governance and transparency.
 
-            Through 2015, as many people in as many countries
-            as possible were involved with MY World: citizens of all ages, genders and backgrounds, and particularly
-            the world’s poor and marginalized communities.
             <br/><br/>
-            Results were firstly submitted to the Secretary General´s High Level Panel for Post-2015 before their
-            meetings in Monrovia, Bali and New York and will feed into their final report and recommendations for a new
-            development framework in May 2013.
-            <br/><br/>
-            Afterwhich, MY World will continue gathering people´s voices up to 2015 and results will be shared with
-            the Secretary General and global leaders as they prepare the next development agenda in the run up to 2015.</p>
-            <br/>
 
+        </p>
+            <br/><br/>
+        </div>
+        <div class="col-md-2" id ="page1Col3">
+
+            <img src="img/8.png" width="100%"  alt="UN Assembly">
 
         </div>
-        <div class="col-md-6" id ="page1Col2">
-            <br/>
+        <div class="col-md-4" id ="page1Col2">
+
             <p>
-            Afterwhich, MY World will continue gathering people´s voices up to 2015 and results will be shared with
-            the Secretary General and global leaders as they prepare the next development agenda in the run up to 2015.</p>
-
-            <br><img src="img/UN_SDGs_sept2015.png" width="100%"  alt="UN Assembly">
-
+            Survey results were firstly submitted to the Secretary General´s High Level Panel for Post-2015 before their
+            meetings in Monrovia, Bali and New York and drove their reccomendations in the final report for a new
+            development framework.
             <br/><br/>
-            <p>
-            Results were firstly submitted to the Secretary General´s High Level Panel for Post-2015 before their
-            meetings in Monrovia, Bali and New York and will feed into their final report and recommendations for a new
-            development framework in May 2013.
+
+            From ths data in 2013 a new set of 12 goals was selected by the UN Post 2015 High-Level Panel.
+            The survey continued through the end of 2015 and is actually still accepting responses even today.
+            The results of this most recent survey were used to define the direction for the next 15 years, until the year 2030.
+
             <br/><br/>
             Afterwhich, MY World will continue gathering people´s voices up to 2015 and results will be shared with
             the Secretary General and global leaders as they prepare the next development agenda in the run up to 2015.
+            <br/><br/>
+                Nine and a half million votes were collected across 195 countries with assistance from over 600 organizations.
+                The visualizations below can be used to explore the data.
+
             </p>
-        </div>
+            <br/>
+              </div>
+
+    </div>
+
 </div>
 
-<h3><div id="countryName">  </div></h3>
+<hr>
+
+<h3><div id="countryName">Hover over Country to Populate Vote Data</div></h3>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6" id ="page1aCol1">
@@ -211,260 +214,324 @@
         </div>
 
     <hr/>
-            <form class="form-inline">
-                <div class="form-group">
-                    <label> </label>
-                    <!-- Reference: https://proto.io/freebies/onoff/ -->
-                    <div class="onoffswitch">
-                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="continentcountry" checked>
-                        <label class="onoffswitch-label" for="continentcountry">
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
+
+
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-md-12">
+                    <h1>What Factors Motivate Priorities ? </h1>
+                    <!-- Visualization placeholders -->
+                    <div class="form-inline">
+                        <label id="vDropDown1" for="rankingType">Select Continent</label>
+                        <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
+                            <option value="ALL">ALL</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Africa">Africa</option>
+                            <option value="Europe">Europe</option>
+                            <option value="North America">North America</option>
+                            <option value="South America">South America</option>
+                            <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
+                        </select>
+                    </div>
+                    <div class="form-inline">
+                        <label id="vDropDown2" for="rankingType">Select Demographic Variable</label>
+                        <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
+                            <option value="HDI">Human Development Index</option>
+                            <option value="LifeExpectancy">Life Expectancy</option>
+                            <option value="ExpectedSchool">Expected Years of Schooling</option>
+                            <option value="MeanSchool">Mean Years of Schooling</option>
+                            <option value="GNI">Gross National Income Per Capita</option>
+                            <option value="Population">Population</option>
+                        </select>
+                    </div>
+                    <div class="form-inline">
+                        <label id="vDropDown3" for="rankingType">Select Survey Priority</label>
+                        <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
+                            <option value="x100">Action taken on climate change</option>
+                            <option value="x101">Better transport and roads</option>
+                            <option value="x102">Support for people who can't work</option>
+                            <option value="x103">Access to clean water and sanitation</option>
+                            <option value="x104">Better healthcare</option>
+                            <option value="x105">A good education</option>
+                            <option value="x106">A responsive government we can trust</option>
+                            <option value="x107">Phone and internet access</option>
+                            <option value="x108">Reliable energy at home</option>
+                            <option value="x109">Affordable and nutritious food</option>
+                            <option value="x110">Protecting forests, rivers and oceans</option>
+                            <option value="x111">Political freedoms</option>
+                            <option value="x112">Protection against crime and violence</option>
+                            <option value="x113">Freedom from discrimination and persecution</option>
+                            <option value="x114">Equality between men and women</option>
+                            <option value="x115">Better job opportunities</option>
+                        </select>
+                    </div>
+
+
+                    <div id="scatterVB" align="center"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <hr/>
+
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="form-inline">
+                            <!-- Reference: https://proto.io/freebies/onoff/ -->
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="continentcountry" checked>
+                                <label class="onoffswitch-label" for="continentcountry">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+
+                        <div class="form-inline">
+                            <label class="continent">Select Continent:</label>
+                            <select class="selectpicker continent" id="selectcontinent" multiple>
+                                <option selected>Africa</option>
+                                <!--<option selected>Antarctica</option>-->
+                                <option selected>Asia</option>
+                                <option selected>Australia</option>
+                                <option selected>Europe</option>
+                                <option selected>North America</option>
+                                <!--<option selected>Oceania</option>-->
+                                <option selected>South America</option>
+                            </select>
+                        </div>
+
+                        <div class="form-inline">
+                            <label class="country">Select Conuntries:</label>
+                            <select class="selectpicker country" id="selectcountry" multiple>
+                                <option >Afghanistan</option>
+                                <option >Albania</option>
+                                <option >Algeria</option>
+                                <option >Andorra</option>
+                                <option >Angola</option>
+                                <option >Antigua and Barbuda</option>
+                                <option >Argentina</option>
+                                <option >Armenia</option>
+                                <option selected>Australia</option>
+                                <option >Austria</option>
+                                <option >Azerbaijan</option>
+                                <option >Bahamas</option>
+                                <option >Bahrain</option>
+                                <option >Bangladesh</option>
+                                <option >Barbados</option>
+                                <option >Belarus</option>
+                                <option >Belgium</option>
+                                <option >Belize</option>
+                                <option >Benin</option>
+                                <option >Bhutan</option>
+                                <option >Bolivia (Plurinational State of)</option>
+                                <option >Bosnia and Herzegovina</option>
+                                <option >Botswana</option>
+                                <option >Brazil</option>
+                                <option >Brunei Darussalam</option>
+                                <option >Bulgaria</option>
+                                <option >Burkina Faso</option>
+                                <option >Burundi</option>
+                                <option >Cambodia</option>
+                                <option >Cameroon</option>
+                                <option >Canada</option>
+                                <option >Cape Verde</option>
+                                <option >Central African Republic</option>
+                                <option >Chad</option>
+                                <option >Chile</option>
+                                <option selected>China</option>
+                                <option >Colombia</option>
+                                <option >Comoros</option>
+                                <option >Congo</option>
+                                <option >Costa Rica</option>
+                                <option >Cote d'Ivoire</option>
+                                <option >Croatia</option>
+                                <option >Cuba</option>
+                                <option >Cyprus</option>
+                                <option >Czech Republic</option>
+                                <option >Democratic People's Republic of Korea</option>
+                                <option >Democratic Republic of the Congo</option>
+                                <option >Denmark</option>
+                                <option >Djibouti</option>
+                                <option >Dominica</option>
+                                <option >Dominican Republic</option>
+                                <option >Ecuador</option>
+                                <option >Egypt</option>
+                                <option >El Salvador</option>
+                                <option >Equatorial Guinea</option>
+                                <option >Eritrea</option>
+                                <option >Estonia</option>
+                                <option >Ethiopia</option>
+                                <option >Fiji</option>
+                                <option >Finland</option>
+                                <option >France</option>
+                                <option >Gabon</option>
+                                <option >Gambia</option>
+                                <option >Georgia</option>
+                                <option >Germany</option>
+                                <option >Ghana</option>
+                                <option >Greece</option>
+                                <option >Grenada</option>
+                                <option >Guatemala</option>
+                                <option >Guinea</option>
+                                <option >Guinea-Bissau</option>
+                                <option >Guyana</option>
+                                <option >Haiti</option>
+                                <option >Honduras</option>
+                                <option >Hungary</option>
+                                <option >Iceland</option>
+                                <option selected>India</option>
+                                <option >Indonesia</option>
+                                <option >Iran (Islamic Republic of)</option>
+                                <option >Iraq</option>
+                                <option >Ireland</option>
+                                <option >Israel</option>
+                                <option >Italy</option>
+                                <option >Jamaica</option>
+                                <option >Japan</option>
+                                <option >Jordan</option>
+                                <option >Kazakhstan</option>
+                                <option >Kenya</option>
+                                <option >Kiribati</option>
+                                <option >Kuwait</option>
+                                <option >Kyrgyzstan</option>
+                                <option >Lao People's Democratic Republic</option>
+                                <option >Latvia</option>
+                                <option >Lebanon</option>
+                                <option >Lesotho</option>
+                                <option >Liberia</option>
+                                <option >Libya</option>
+                                <option >Liechtenstein</option>
+                                <option >Lithuania</option>
+                                <option >Luxembourg</option>
+                                <option >Madagascar</option>
+                                <option >Malawi</option>
+                                <option >Malaysia</option>
+                                <option >Maldives</option>
+                                <option >Mali</option>
+                                <option >Malta</option>
+                                <option >Marshall Islands</option>
+                                <option >Mauritania</option>
+                                <option >Mauritius</option>
+                                <option >Mexico</option>
+                                <option >Micronesia (Federated States of)</option>
+                                <option >Monaco</option>
+                                <option >Mongolia</option>
+                                <option >Montenegro</option>
+                                <option >Morocco</option>
+                                <option >Mozambique</option>
+                                <option >Myanmar</option>
+                                <option >Namibia</option>
+                                <option >Nauru</option>
+                                <option >Nepal</option>
+                                <option >Netherlands</option>
+                                <option >New Zealand</option>
+                                <option >Nicaragua</option>
+                                <option >Niger</option>
+                                <option >Nigeria</option>
+                                <option >Norway</option>
+                                <option >Oman</option>
+                                <option >Pakistan</option>
+                                <option >Palau</option>
+                                <option >Palestine (State of)</option>
+                                <option >Panama</option>
+                                <option >Papua New Guinea</option>
+                                <option >Paraguay</option>
+                                <option >Peru</option>
+                                <option >Philippines</option>
+                                <option >Poland</option>
+                                <option >Portugal</option>
+                                <option >Qatar</option>
+                                <option >Republic of Korea</option>
+                                <option >Republic of Moldova</option>
+                                <option >Romania</option>
+                                <option >Russian Federation</option>
+                                <option >Rwanda</option>
+                                <option >Saint Kitts and Nevis</option>
+                                <option >Saint Lucia</option>
+                                <option >Saint Vincent and the Grenadines</option>
+                                <option >Samoa</option>
+                                <option >San Marino</option>
+                                <option >Sao Tome and Principe</option>
+                                <option >Saudi Arabia</option>
+                                <option >Senegal</option>
+                                <option >Serbia</option>
+                                <option >Seychelles</option>
+                                <option >Sierra Leone</option>
+                                <option >Singapore</option>
+                                <option >Slovakia</option>
+                                <option >Slovenia</option>
+                                <option >Solomon Islands</option>
+                                <option >Somalia</option>
+                                <option >South Africa</option>
+                                <option >South Sudan</option>
+                                <option >Spain</option>
+                                <option >Sri Lanka</option>
+                                <option >Sudan</option>
+                                <option >Suriname</option>
+                                <option >Swaziland</option>
+                                <option >Sweden</option>
+                                <option >Switzerland</option>
+                                <option >Syrian Arab Republic</option>
+                                <option >Tajikistan</option>
+                                <option >Thailand</option>
+                                <option >The former Yugoslav Republic of Macedonia</option>
+                                <option >Timor-Leste</option>
+                                <option >Togo</option>
+                                <option >Tonga</option>
+                                <option >Trinidad and Tobago</option>
+                                <option >Tunisia</option>
+                                <option >Turkey</option>
+                                <option >Turkmenistan</option>
+                                <option >Tuvalu</option>
+                                <option >Uganda</option>
+                                <option >Ukraine</option>
+                                <option >United Arab Emirates</option>
+                                <option selected>United Kingdom of Great Britain and Northern Ireland</option>
+                                <option >United Republic of Tanzania</option>
+                                <option selected>United States</option>
+                                <option >Uruguay</option>
+                                <option >Uzbekistan</option>
+                                <option >Vanuatu</option>
+                                <option >Venezuela (Bolivarian Republic of)</option>
+                                <option >Viet Nam</option>
+                                <option >Yemen</option>
+                                <option >Zambia</option>
+                                <option >Zimbabwe</option>
+                            </select>
+                        </div>
+
+                        <div class="form-inline">
+                            <Label>Select Issues:</Label>
+                            <select class="selectpicker" id ="selectissue" onchange="benUpdateMap()">
+                                <option selected value="All">All Issues</option>
+                                <option style="background: #fcb749; color: white;" value="100">Action taken on climate change</option>
+                                <option style="background: #fbe792; color: white;" value="101">Better transport and roads</option>
+                                <option style="background: #233884; color: white;" value="102">Support for people who can't work</option>
+                                <option style="background: #97d3c9; color: white;" value="103">Access to clean water and sanitation</option>
+                                <option style="background: #ca3a28; color: white;" value="104">Better healthcare</option>
+                                <option style="background: #47c0be; color: white;" value="105">A good education</option>
+                                <option style="background: #2da9e1; color: white;" value="106">A responsive government we can trust</option>
+                                <option style="background: #7cb5d6; color: white;" value="107">Phone and internet access</option>
+                                <option style="background: #a01c40; color: white;" value="108">Reliable energy at home</option>
+                                <option style="background: #b0d256; color: white;" value="109">Affordable and nutritious food</option>
+                                <option style="background: #71be45; color: white;" value="110">Protecting forests, rivers and oceans</option>
+                                <option style="background: #387195; color: white;" value="111">Protection against crime and violence</option>
+                                <option style="background: #723390; color: white;" value="112">Political freedoms</option>
+                                <option style="background: #dec0ca; color: white;" value="113">Freedom from discrimination and persecution</option>
+                                <option style="background: #c84699; color: white;" value="114">Equality between men and women</option>
+                                <option style="background: #e8168b; color: white;" value="115">Better job opportunities</option>
+                            </select>
+                        </div>
+                    </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="continent">Select Continent:</label><br>
-                    <select class="selectpicker continent" id="selectcontinent" multiple>
-                        <option selected>Africa</option>
-                        <!--<option selected>Antarctica</option>-->
-                        <option selected>Asia</option>
-                        <option selected>Australia</option>
-                        <option selected>Europe</option>
-                        <option selected>North America</option>
-                        <!--<option selected>Oceania</option>-->
-                        <option selected>South America</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="country">Select Conuntries:</label><br>
-                    <select class="selectpicker country" id="selectcountry" multiple>
-                        <option >Afghanistan</option>
-                        <option >Albania</option>
-                        <option >Algeria</option>
-                        <option >Andorra</option>
-                        <option >Angola</option>
-                        <option >Antigua and Barbuda</option>
-                        <option >Argentina</option>
-                        <option >Armenia</option>
-                        <option selected>Australia</option>
-                        <option >Austria</option>
-                        <option >Azerbaijan</option>
-                        <option >Bahamas</option>
-                        <option >Bahrain</option>
-                        <option >Bangladesh</option>
-                        <option >Barbados</option>
-                        <option >Belarus</option>
-                        <option >Belgium</option>
-                        <option >Belize</option>
-                        <option >Benin</option>
-                        <option >Bhutan</option>
-                        <option >Bolivia (Plurinational State of)</option>
-                        <option >Bosnia and Herzegovina</option>
-                        <option >Botswana</option>
-                        <option >Brazil</option>
-                        <option >Brunei Darussalam</option>
-                        <option >Bulgaria</option>
-                        <option >Burkina Faso</option>
-                        <option >Burundi</option>
-                        <option >Cambodia</option>
-                        <option >Cameroon</option>
-                        <option >Canada</option>
-                        <option >Cape Verde</option>
-                        <option >Central African Republic</option>
-                        <option >Chad</option>
-                        <option >Chile</option>
-                        <option selected>China</option>
-                        <option >Colombia</option>
-                        <option >Comoros</option>
-                        <option >Congo</option>
-                        <option >Costa Rica</option>
-                        <option >Cote d'Ivoire</option>
-                        <option >Croatia</option>
-                        <option >Cuba</option>
-                        <option >Cyprus</option>
-                        <option >Czech Republic</option>
-                        <option >Democratic People's Republic of Korea</option>
-                        <option >Democratic Republic of the Congo</option>
-                        <option >Denmark</option>
-                        <option >Djibouti</option>
-                        <option >Dominica</option>
-                        <option >Dominican Republic</option>
-                        <option >Ecuador</option>
-                        <option >Egypt</option>
-                        <option >El Salvador</option>
-                        <option >Equatorial Guinea</option>
-                        <option >Eritrea</option>
-                        <option >Estonia</option>
-                        <option >Ethiopia</option>
-                        <option >Fiji</option>
-                        <option >Finland</option>
-                        <option >France</option>
-                        <option >Gabon</option>
-                        <option >Gambia</option>
-                        <option >Georgia</option>
-                        <option >Germany</option>
-                        <option >Ghana</option>
-                        <option >Greece</option>
-                        <option >Grenada</option>
-                        <option >Guatemala</option>
-                        <option >Guinea</option>
-                        <option >Guinea-Bissau</option>
-                        <option >Guyana</option>
-                        <option >Haiti</option>
-                        <option >Honduras</option>
-                        <option >Hungary</option>
-                        <option >Iceland</option>
-                        <option selected>India</option>
-                        <option >Indonesia</option>
-                        <option >Iran (Islamic Republic of)</option>
-                        <option >Iraq</option>
-                        <option >Ireland</option>
-                        <option >Israel</option>
-                        <option >Italy</option>
-                        <option >Jamaica</option>
-                        <option >Japan</option>
-                        <option >Jordan</option>
-                        <option >Kazakhstan</option>
-                        <option >Kenya</option>
-                        <option >Kiribati</option>
-                        <option >Kuwait</option>
-                        <option >Kyrgyzstan</option>
-                        <option >Lao People's Democratic Republic</option>
-                        <option >Latvia</option>
-                        <option >Lebanon</option>
-                        <option >Lesotho</option>
-                        <option >Liberia</option>
-                        <option >Libya</option>
-                        <option >Liechtenstein</option>
-                        <option >Lithuania</option>
-                        <option >Luxembourg</option>
-                        <option >Madagascar</option>
-                        <option >Malawi</option>
-                        <option >Malaysia</option>
-                        <option >Maldives</option>
-                        <option >Mali</option>
-                        <option >Malta</option>
-                        <option >Marshall Islands</option>
-                        <option >Mauritania</option>
-                        <option >Mauritius</option>
-                        <option >Mexico</option>
-                        <option >Micronesia (Federated States of)</option>
-                        <option >Monaco</option>
-                        <option >Mongolia</option>
-                        <option >Montenegro</option>
-                        <option >Morocco</option>
-                        <option >Mozambique</option>
-                        <option >Myanmar</option>
-                        <option >Namibia</option>
-                        <option >Nauru</option>
-                        <option >Nepal</option>
-                        <option >Netherlands</option>
-                        <option >New Zealand</option>
-                        <option >Nicaragua</option>
-                        <option >Niger</option>
-                        <option >Nigeria</option>
-                        <option >Norway</option>
-                        <option >Oman</option>
-                        <option >Pakistan</option>
-                        <option >Palau</option>
-                        <option >Palestine (State of)</option>
-                        <option >Panama</option>
-                        <option >Papua New Guinea</option>
-                        <option >Paraguay</option>
-                        <option >Peru</option>
-                        <option >Philippines</option>
-                        <option >Poland</option>
-                        <option >Portugal</option>
-                        <option >Qatar</option>
-                        <option >Republic of Korea</option>
-                        <option >Republic of Moldova</option>
-                        <option >Romania</option>
-                        <option >Russian Federation</option>
-                        <option >Rwanda</option>
-                        <option >Saint Kitts and Nevis</option>
-                        <option >Saint Lucia</option>
-                        <option >Saint Vincent and the Grenadines</option>
-                        <option >Samoa</option>
-                        <option >San Marino</option>
-                        <option >Sao Tome and Principe</option>
-                        <option >Saudi Arabia</option>
-                        <option >Senegal</option>
-                        <option >Serbia</option>
-                        <option >Seychelles</option>
-                        <option >Sierra Leone</option>
-                        <option >Singapore</option>
-                        <option >Slovakia</option>
-                        <option >Slovenia</option>
-                        <option >Solomon Islands</option>
-                        <option >Somalia</option>
-                        <option >South Africa</option>
-                        <option >South Sudan</option>
-                        <option >Spain</option>
-                        <option >Sri Lanka</option>
-                        <option >Sudan</option>
-                        <option >Suriname</option>
-                        <option >Swaziland</option>
-                        <option >Sweden</option>
-                        <option >Switzerland</option>
-                        <option >Syrian Arab Republic</option>
-                        <option >Tajikistan</option>
-                        <option >Thailand</option>
-                        <option >The former Yugoslav Republic of Macedonia</option>
-                        <option >Timor-Leste</option>
-                        <option >Togo</option>
-                        <option >Tonga</option>
-                        <option >Trinidad and Tobago</option>
-                        <option >Tunisia</option>
-                        <option >Turkey</option>
-                        <option >Turkmenistan</option>
-                        <option >Tuvalu</option>
-                        <option >Uganda</option>
-                        <option >Ukraine</option>
-                        <option >United Arab Emirates</option>
-                        <option selected>United Kingdom of Great Britain and Northern Ireland</option>
-                        <option >United Republic of Tanzania</option>
-                        <option selected>United States</option>
-                        <option >Uruguay</option>
-                        <option >Uzbekistan</option>
-                        <option >Vanuatu</option>
-                        <option >Venezuela (Bolivarian Republic of)</option>
-                        <option >Viet Nam</option>
-                        <option >Yemen</option>
-                        <option >Zambia</option>
-                        <option >Zimbabwe</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <Label>Select Issues:</Label><br>
-                    <select class="selectpicker" id ="selectissue" onchange="benUpdateMap()">
-                        <option selected value="All">All Issues</option>
-                        <option style="background: #fcb749; color: white;" value="100">Action taken on climate change</option>
-                        <option style="background: #fbe792; color: white;" value="101">Better transport and roads</option>
-                        <option style="background: #233884; color: white;" value="102">Support for people who can't work</option>
-                        <option style="background: #97d3c9; color: white;" value="103">Access to clean water and sanitation</option>
-                        <option style="background: #ca3a28; color: white;" value="104">Better healthcare</option>
-                        <option style="background: #47c0be; color: white;" value="105">A good education</option>
-                        <option style="background: #2da9e1; color: white;" value="106">A responsive government we can trust</option>
-                        <option style="background: #7cb5d6; color: white;" value="107">Phone and internet access</option>
-                        <option style="background: #a01c40; color: white;" value="108">Reliable energy at home</option>
-                        <option style="background: #b0d256; color: white;" value="109">Affordable and nutritious food</option>
-                        <option style="background: #71be45; color: white;" value="110">Protecting forests, rivers and oceans</option>
-                        <option style="background: #387195; color: white;" value="111">Protection against crime and violence</option>
-                        <option style="background: #723390; color: white;" value="112">Political freedoms</option>
-                        <option style="background: #dec0ca; color: white;" value="113">Freedom from discrimination and persecution</option>
-                        <option style="background: #c84699; color: white;" value="114">Equality between men and women</option>
-                        <option style="background: #e8168b; color: white;" value="115">Better job opportunities</option>
-                    </select>
-                </div>
-            </form>
-
             <div class="row">
-                <div class="col-md-5 stackedbarchart" align="center"></div>
-                <div class="col-md-7" id="map2" align="center">
+                <div class="col-md-5 stackedbarchart" id="stackedbarchart" align="center"></div>
+                <div class="col-md-7" id="map2" align="center"> </div>
             </div>
         </div>
     </div>
@@ -499,157 +566,143 @@
             <!--</select>-->
         <!--</div>-->
     <!--</div>-->
+
+
+<a href="http://www.post2015hlp.org/wp-content/uploads/2013/05/UN-Report.pdf"><h3>The Millennium Goals Through 2030</h3></a>
 <hr>
-
-<h3>The Millennium Project Goals</h3>
-<hr>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6" id ="page4Col2"><div id="chart-area"></div></div></div>
-
-            <div class="col-md-6" id ="page4Col3">  <img src="img/UNBuilding.jpg" width="100%"  alt="UN"><br> <br>	</div>
-
-        <br>
-        <p>
-        <h4>Goal 1: Eradicate Extreme Hunger and Poverty</h4>
-        Halve, between 1990 and 2015, the proportion of people whose income is less than $1 a day and who suffer from hunger.
-
-
-        <h4>Goal 2: Achieve Universal Primary Education</h4>
-        Ensure that, by 2015, children everywhere, boys and girls alike, will be able to complete a full course of primary schooling.
-
-        <br/>
-        <h4>Goal 3: Promote Gender Equality and Empower Women </h4>
-        Eliminate gender disparity in primary and secondary education, preferably by 2005, and in all levels of education no later than 2015.
-
-        <h4>Goal 4: Reduce Child Mortality </h4>
-        Reduce by two-thirds, between 1990 and 2015, the under-five mortality rate.
-        <br/>
-
-        <h4>Goal 5: Improve Maternal Health </h4>
-        Reduce by three-quarters, between 1990 and 2015, the maternal mortality ratio.
-
-        <br/>
-        <h4>Goal 6: Combat HIV/AIDS, Malaria and other diseases </h4>
-        Have halted by 2015 and begun to reverse the spread of HIV/AIDS and have halted by 2015 and begun to reverse the incidence of malaria and other major diseases.
-
-        <br/>
-        <h4>Goal 7: Ensure Environmental Sustainability </h4>
-        Integrate the principles of sustainable development into country policies and programs and reverse the loss of environmental resources.
-        By 2015 halve the proportion of people without sustainable access to safe drinking water and basic sanitation, and by 2020 improve the lives of at least 20 million slum dwellers.
-
-        <br/>
-        <h4>Goal 8: Develop a Global Partnership for Development</h4>
-        Develop nondiscriminatory trading and financial system, address the special needs of the Least Developed Countries, address the special needs of landlocked developing countries
-        Deal comprehensively with the debt problems of developing countries through national and international measures in order to make debt sustainable in the long term
-
-
-        </p>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" id ="g1" >
+            <a href="https://sustainabledevelopment.un.org/sdg1"> <img src="img/01.jpg" width=150px /></a>
+        </div>
+        <div class="col-md-2" id ="g2">
+            <a href="https://sustainabledevelopment.un.org/sdg2">  <img src="img/02.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g3">
+            <a href="https://sustainabledevelopment.un.org/sdg3"> <img src="img/03.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g4">
+            <a href="https://sustainabledevelopment.un.org/sdg4"> <img src="img/04.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g5">
+            <a href="https://sustainabledevelopment.un.org/sdg5"> <img src="img/05.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g6">
+            <a href="https://sustainabledevelopment.un.org/sdg6"> <img src="img/06.jpg" width=150px/></a>
         </div>
     </div>
-
-<hr/>
-
-
-<div class="container-fluid">
-
-    <div class="row" >
-        <div class="col-md-12">
-            <h1>What Factors Motivate Priorities ? </h1>
-            <!-- Visualization placeholders -->
-            <div class="form-inline">
-                <label id="vDropDown" for="rankingType">Select Continent</label>
-                <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
-                    <option value="ALL">ALL</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Europe">Europe</option>
-                    <option value="North America">North America</option>
-                    <option value="South America">South America</option>
-                    <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
-                </select>
-            </div>
-            <div class="form-inline">
-                <label id="vDropDown" for="rankingType">Select Demographic Variable</label>
-                <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
-                    <option value="HDI">Human Development Index</option>
-                    <option value="LifeExpectancy">Life Expectancy</option>
-                    <option value="ExpectedSchool">Expected Years of Schooling</option>
-                    <option value="MeanSchool">Mean Years of Schooling</option>
-                    <option value="GNI">Gross National Income Per Capita</option>
-                    <option value="Population">Population</option>
-                </select>
-            </div>
-            <div class="form-inline">
-                <label id="vDropDown" for="rankingType">Select Survey Priority</label>
-                <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
-                    <option value="x100">Action taken on climate change</option>
-                    <option value="x101">Better transport and roads</option>
-                    <option value="x102">Support for people who can't work</option>
-                    <option value="x103">Access to clean water and sanitation</option>
-                    <option value="x104">Better healthcare</option>
-                    <option value="x105">A good education</option>
-                    <option value="x106">A responsive government we can trust</option>
-                    <option value="x107">Phone and internet access</option>
-                    <option value="x108">Reliable energy at home</option>
-                    <option value="x109">Affordable and nutritious food</option>
-                    <option value="x110">Protecting forests, rivers and oceans</option>
-                    <option value="x111">Political freedoms</option>
-                    <option value="x112">Protection against crime and violence</option>
-                    <option value="x113">Freedom from discrimination and persecution</option>
-                    <option value="x114">Equality between men and women</option>
-                    <option value="x115">Better job opportunities</option>
-                </select>
-            </div>
-
-
-            <div id="scatterVB"></div>
+    <br/>
+    <div class="row">
+        <div class="col-md-2" id ="g7">
+            <a href="https://sustainabledevelopment.un.org/sdg7"> <img src="img/07.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g8">
+            <a href="https://sustainabledevelopment.un.org/sdg8"> <img src="img/08.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g9">
+            <a href="https://sustainabledevelopment.un.org/sdg9"> <img src="img/09.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g10">
+            <a href="https://sustainabledevelopment.un.org/sdg10"> <img src="img/10.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g11">
+            <a href="https://sustainabledevelopment.un.org/sdg11"> <img src="img/11.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g12">
+            <a href="https://sustainabledevelopment.un.org/sdg12"> <img src="img/12.jpg" width=150px/></a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-2" id ="g13">
+            <a href="https://sustainabledevelopment.un.org/sdg13"> <img src="img/13.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g14">
+            <a href="https://sustainabledevelopment.un.org/sdg14"> <img src="img/14.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g15">
+            <a href="https://sustainabledevelopment.un.org/sdg15"> <img src="img/15.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g16">
+            <a href="https://sustainabledevelopment.un.org/sdg16"> <img src="img/16.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g17">
+            <a href="https://sustainabledevelopment.un.org/sdg17"> <img src="img/17.jpg" width=150px/></a>
+        </div>
+        <div class="col-md-2" id ="g18">
+            <a href="https://sustainabledevelopment.un.org/post2015/transformingourworld"> <img src="img/18.jpg" width=150px/></a>
         </div>
     </div>
 
 </div>
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6" id ="page4Col3">-->
+                    <!--<br>-->
+                    <!--<p>-->
+
+                    <!--<h4>Goal 1: End Poverty</h4>-->
+                    <!--Bring the number of people living on less than $1.25 a day to zero and-->
+                    <!--reduce by x% the share of people living below their country’s 2015 national-->
+                    <!--poverty line-->
+
+                    <!--<h4>Goal 2: Achieve Universal Primary Education</h4>-->
+                    <!--Ensure that, by 2015, children everywhere, boys and girls alike, will be able to complete a full course of primary schooling.-->
+
+                    <!--<br/>-->
+                    <!--<h4>Goal 3: Promote Gender Equality and Empower Women </h4>-->
+                    <!--Eliminate gender disparity in primary and secondary education, preferably by 2005, and in all levels of education no later than 2015.-->
+
+                    <!--<h4>Goal 4: Reduce Child Mortality </h4>-->
+                    <!--Reduce by two-thirds, between 1990 and 2015, the under-five mortality rate.-->
+                    <!--<br/>-->
+
+                    <!--<h4>Goal 5: Improve Maternal Health </h4>-->
+                    <!--Reduce by three-quarters, between 1990 and 2015, the maternal mortality ratio.-->
+
+                    <!--<br/>-->
+                    <!--<h4>Goal 6: Combat HIV/AIDS, Malaria and other diseases </h4>-->
+                    <!--Have halted by 2015 and begun to reverse the spread of HIV/AIDS and have halted by 2015 and begun to reverse the incidence of malaria and other major diseases.-->
+
+                    <!--<br/>-->
+                    <!--<h4>Goal 7: Ensure Environmental Sustainability </h4>-->
+                    <!--Integrate the principles of sustainable development into country policies and programs and reverse the loss of environmental resources.-->
+                    <!--By 2015 halve the proportion of people without sustainable access to safe drinking water and basic sanitation, and by 2020 improve the lives of at least 20 million slum dwellers.-->
+
+                    <!--<br/>-->
+                    <!--<h4>Goal 8: Develop a Global Partnership for Development</h4>-->
+                    <!--Develop nondiscriminatory trading and financial system, address the special needs of the Least Developed Countries, address the special needs of landlocked developing countries-->
+                    <!--Deal comprehensively with the debt problems of developing countries through national and international measures in order to make debt sustainable in the long term-->
+
+                    <!--</p>-->
+                <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
 <hr/>
 
 
-    <div class="container-fluid">
-        <div class="row">
 
-            <div class="col-md-6" id ="page3Col1">
+
+<!--<hr/>-->
+
+
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+
+            <!--<div class="col-md-6" id ="page3Col1">-->
 
                 <!--<h4>Lorem Ipsum</h4>-->
-                <!--<p>-->
-                <!--<br> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,-->
-                <!--totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt-->
-                <!--explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur-->
-                <!--magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor-->
-                <!--sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam-->
-                <!--aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit-->
-                <!--laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate-->
-                <!--velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?-->
-                <!--<br>-->
-                <!--<br><br><h4>Lorem Ipsum</h4>-->
-                <!--<br> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,-->
-                <!--totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt-->
-                <!--explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur-->
-                <!--magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor-->
-                <!--sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam-->
-                <!--aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit-->
-                <!--laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate-->
-                <!--velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?-->
-                <!--<br>-->
-                <!--<br><br>-->
-                <!--</p>-->
-            </div>
-            <div class="col-md-6" id ="page3Col2">
 
-                <br><br><img src="img/UN-Assembly.jpg" width="100%"  alt="UN Assembly">
+            <!--</div>-->
+            <!--<div class="col-md-6" id ="page3Col2">-->
 
-            </div>
+                <!--<br><br><img src="img/UN-Assembly.jpg" width="100%"  alt="UN Assembly">-->
 
-        </div>
-    </div>
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
 
 
 <!-- Load JS libraries -->
