@@ -310,11 +310,11 @@
         <hr/>
 
         <div class="container-fluid">
-            <div class="row" >
+            <form class="form-inline" >
                 <div class="col-md-12">
                     <h1>What Factors Motivate Priorities ? </h1>
                     <!-- Visualization placeholders -->
-                    <div class="form-inline">
+                    <div class="form-group">
                         <label id="vDropDown1" for="rankingType">Select Continent</label>
                         <select class="form-control" id="rankingtype2" onchange="myScatter.updateData()">
                             <option value="ALL">ALL</option>
@@ -326,7 +326,7 @@
                             <option value="AustraliaPacificIslands">Australia & Pacific Islands</option>
                         </select>
                     </div>
-                    <div class="form-inline">
+                    <div class="form-group">
                         <label id="vDropDown2" for="rankingType">Select Demographic Variable</label>
                         <select class="form-control" id="rankingtype" onchange="myScatter.updateData()">
                             <option value="HDI">Human Development Index</option>
@@ -337,7 +337,7 @@
                             <option value="Population">Population</option>
                         </select>
                     </div>
-                    <div class="form-inline">
+                    <div class="form-group">
                         <label id="vDropDown3" for="rankingType">Select Survey Priority</label>
                         <select class="form-control" id="rankingtype1" onchange="myScatter.updateData()">
                             <option value="x100">Action taken on climate change</option>
@@ -362,7 +362,7 @@
 
                     <div id="scatterVB" align="center"></div>
                 </div>
-            </div>
+            </form>
 
         </div>
 
@@ -468,9 +468,9 @@
 
 
         <div class="container-fluid">
-            <div class="row" >
+            <form class="form-inline" >
                 <div class="col-md-12">
-                    <div class="form-inline">
+                    <div class="form-group">
                             <!-- Reference: https://proto.io/freebies/onoff/ -->
                             <div class="onoffswitch">
                                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="continentcountry" checked>
@@ -479,8 +479,8 @@
                                     <span class="onoffswitch-switch"></span>
                                 </label>
                             </div>
-
-                        <div class="form-inline">
+                    </div>
+                        <div class="form-group">
                             <label class="continent">Select Continent:</label>
                             <select class="selectpicker continent" id="selectcontinent" multiple>
                                 <option selected>Africa</option>
@@ -494,7 +494,7 @@
                             </select>
                         </div>
 
-                        <div class="form-inline">
+                        <div class="form-group">
                             <label class="country">Select Conuntries:</label>
                             <select class="selectpicker country" id="selectcountry" multiple>
                                 <option >Afghanistan</option>
@@ -694,7 +694,7 @@
                             </select>
                         </div>
 
-                        <div class="form-inline">
+                        <div class="form-group">
                             <Label>Select Issues:</Label>
                             <select class="selectpicker" id ="selectissue" onchange="benUpdateMap()">
                                 <option selected value="All">All Issues</option>
@@ -717,8 +717,7 @@
                             </select>
                         </div>
                     </div>
-                    </div>
-                </div>
+                </form>
 
             <div class="row">
                 <div class="col-md-5 stackedbarchart" id="stackedbarchart" align="center"></div>
