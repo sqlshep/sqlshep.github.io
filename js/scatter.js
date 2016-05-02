@@ -3,13 +3,13 @@
 ScatterPlot = function(_parentElement, _data){
 	this.parentElement = _parentElement;
   	this.data = _data;
-	console.log("create object")
+	//console.log("create object")
 	this.initVis();
 }
 
 
 ScatterPlot.prototype.initVis = function(){
-	console.log("initVis")
+	//console.log("initVis")
 	var vis = this;
 	vis.margin = { top: 40, right: 150, bottom: 100, left: 60 };
 	vis.width = document.getElementById('scatterVB').offsetWidth - vis.margin.left - vis.margin.right,

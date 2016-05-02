@@ -357,7 +357,7 @@ d3.select("#selectissue").on("change", wrangleData);
 
         }
 
-        console.log(filterData)
+        //console.log(filterData)
 
         // Call updateVis() to draw data
         updateVis();

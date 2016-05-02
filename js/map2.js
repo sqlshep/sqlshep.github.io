@@ -12,7 +12,7 @@ var benMargin = {top: 1, right: 1, bottom: 1, left: 1};
 var benWidth = (document.getElementById('map-area').offsetWidth *.6) - benMargin.left - benMargin.right,
     benHeight = benWidth
 
-console.log(benWidth);
+//console.log(benWidth);
 var benColor = d3.scale.linear() // create a linear scale
     .domain([1,16])  // input uses min and max values
     .range([1,.1]);

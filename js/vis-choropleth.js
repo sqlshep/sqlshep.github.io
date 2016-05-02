@@ -7,7 +7,7 @@ d3.select(window).on("resize", throttle);
 var mapWidth = document.getElementById('map-area').offsetWidth ;
 var mapHeight = mapWidth /2;
 
-console.log(mapWidth, " ", mapWidth);
+//console.log(mapWidth, " ", mapWidth);
 
 
 var color = d3.scale.linear()
@@ -170,7 +170,8 @@ function draw(topo) {
             tooltip
                 .classed("hidden", false)
                 .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-                .html(d.properties.name +
+                .html(
+                    d.properties.name +
                     "<br>Population: " + (d.properties.population*1000).toLocaleString('en') +
                     "<br>Total Votes: " + d.properties.TotalVotes.toLocaleString('en')+
                     "<br>HDI: " + d.properties.HDI.toLocaleString('en') +
@@ -178,7 +179,7 @@ function draw(topo) {
                     "<br>GNI: " + d.properties.GNI.toLocaleString('en') +
                     "<br>Mean School Years: " + d.properties.MeanSchool.toLocaleString('en') +
                     "<br>Life Expectancy: " + d.properties.LifeExpectancy.toLocaleString('en')
-                )
+        )
                 updateTable(d);
         })
         .on("mouseout",  function(d) {
@@ -331,49 +332,90 @@ function map1WrangleData(){
 }
 function updateTable(d){
 
-    document.getElementById('countryName').innerHTML = d.properties.name.toLocaleString('en');
+    if (!d.properties.name || d.properties.name  == null){
+        document.getElementById('countryName').innerHTML = "N/A";
+        //console.log(d.properties.name);
+    } else {
+        document.getElementById('countryName').innerHTML = d.properties.name.toLocaleString('en');
+        //console.log(d.properties.name);
+    }
+    if (!d.properties[100].toLocaleString('en') || (d.properties[100] == 0))  {
+        //console.log("no data ");
+        document.getElementById('Pri-100').innerHTML = "N/A";
+        document.getElementById('PriPer-100').innerHTML  = "N/A";
+        document.getElementById('Pri-101').innerHTML  = "N/A";
+        document.getElementById('PriPer-101').innerHTML  = "N/A";
+        document.getElementById('Pri-102').innerHTML  = "N/A";
+        document.getElementById('PriPer-102').innerHTML  = "N/A";
+        document.getElementById('Pri-103').innerHTML  = "N/A";
+        document.getElementById('PriPer-103').innerHTML  = "N/A";
+        document.getElementById('Pri-104').innerHTML  = "N/A";
+        document.getElementById('PriPer-104').innerHTML  = "N/A";
+        document.getElementById('Pri-105').innerHTML  = "N/A";
+        document.getElementById('PriPer-105').innerHTML  = "N/A";
+        document.getElementById('Pri-106').innerHTML  = "N/A";
+        document.getElementById('PriPer-106').innerHTML  = "N/A";
+        document.getElementById('Pri-107').innerHTML  = "N/A";
+        document.getElementById('PriPer-107').innerHTML  = "N/A";
+        document.getElementById('Pri-108').innerHTML  = "N/A";
+        document.getElementById('PriPer-108').innerHTML  = "N/A";
+        document.getElementById('Pri-109').innerHTML  = "N/A";
+        document.getElementById('PriPer-109').innerHTML  = "N/A";
+        document.getElementById('Pri-110').innerHTML  = "N/A";
+        document.getElementById('PriPer-110').innerHTML  = "N/A";
+        document.getElementById('Pri-111').innerHTML  = "N/A";
+        document.getElementById('PriPer-111').innerHTML  = "N/A";
+        document.getElementById('Pri-112').innerHTML  = "N/A";
+        document.getElementById('PriPer-112').innerHTML  = "N/A";
+        document.getElementById('Pri-113').innerHTML  = "N/A";
+        document.getElementById('PriPer-113').innerHTML  = "N/A";
+        document.getElementById('Pri-114').innerHTML  = "N/A";
+        document.getElementById('PriPer-114').innerHTML  = "N/A";
+        document.getElementById('Pri-115').innerHTML  = "N/A";
+        document.getElementById('PriPer-115').innerHTML  = "N/A";
 
+    }else {
 
-    document.getElementById('Pri-100').innerHTML = d.properties[100].toLocaleString('en');
-    document.getElementById('PriPer-100').innerHTML =((d.properties[100]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-101').innerHTML = d.properties[101].toLocaleString('en');
-    document.getElementById('PriPer-101').innerHTML = ((d.properties[101]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-102').innerHTML = d.properties[102].toLocaleString('en');
-    document.getElementById('PriPer-102').innerHTML = ((d.properties[102]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-103').innerHTML = d.properties[103].toLocaleString('en');
-    document.getElementById('PriPer-103').innerHTML = ((d.properties[103]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-104').innerHTML = d.properties[104].toLocaleString('en');
-    document.getElementById('PriPer-104').innerHTML = ((d.properties[104]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-105').innerHTML = d.properties[105].toLocaleString('en');
-    document.getElementById('PriPer-105').innerHTML = ((d.properties[105]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-106').innerHTML = d.properties[106].toLocaleString('en');
-    document.getElementById('PriPer-106').innerHTML = ((d.properties[106]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-107').innerHTML = d.properties[107].toLocaleString('en');
-    document.getElementById('PriPer-107').innerHTML = ((d.properties[107]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-108').innerHTML = d.properties[108].toLocaleString('en');
-    document.getElementById('PriPer-108').innerHTML = ((d.properties[108]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-109').innerHTML = d.properties[109].toLocaleString('en');
-    document.getElementById('PriPer-109').innerHTML = ((d.properties[109]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-110').innerHTML = d.properties[110].toLocaleString('en');
-    document.getElementById('PriPer-110').innerHTML = ((d.properties[110]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-111').innerHTML = d.properties[111].toLocaleString('en');
-    document.getElementById('PriPer-111').innerHTML = ((d.properties[111]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-112').innerHTML = d.properties[112].toLocaleString('en');
-    document.getElementById('PriPer-112').innerHTML = ((d.properties[112]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-113').innerHTML = d.properties[113].toLocaleString('en');
-    document.getElementById('PriPer-113').innerHTML = ((d.properties[113]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-114').innerHTML = d.properties[114].toLocaleString('en');
-    document.getElementById('PriPer-114').innerHTML = ((d.properties[114]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-    document.getElementById('Pri-115').innerHTML = d.properties[115].toLocaleString('en');
-    document.getElementById('PriPer-115').innerHTML = ((d.properties[115]/d.properties.TotalVotes)* 100).toFixed(2)+"%";
-
-
-    $(document).ready(function()
-        {
-            $("#mapTable1").tablesorter({theme: 'blue', sortList: [[0,0]]});
-            $("#mapTable2").tablesorter({theme: 'blue', sortList: [[0,0]]});
-        }
-    );
+        document.getElementById('Pri-100').innerHTML = d.properties[100].toLocaleString('en');
+        document.getElementById('PriPer-100').innerHTML = ((d.properties[100] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-101').innerHTML = d.properties[101].toLocaleString('en');
+        document.getElementById('PriPer-101').innerHTML = ((d.properties[101] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-102').innerHTML = d.properties[102].toLocaleString('en');
+        document.getElementById('PriPer-102').innerHTML = ((d.properties[102] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-103').innerHTML = d.properties[103].toLocaleString('en');
+        document.getElementById('PriPer-103').innerHTML = ((d.properties[103] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-104').innerHTML = d.properties[104].toLocaleString('en');
+        document.getElementById('PriPer-104').innerHTML = ((d.properties[104] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-105').innerHTML = d.properties[105].toLocaleString('en');
+        document.getElementById('PriPer-105').innerHTML = ((d.properties[105] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-106').innerHTML = d.properties[106].toLocaleString('en');
+        document.getElementById('PriPer-106').innerHTML = ((d.properties[106] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-107').innerHTML = d.properties[107].toLocaleString('en');
+        document.getElementById('PriPer-107').innerHTML = ((d.properties[107] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-108').innerHTML = d.properties[108].toLocaleString('en');
+        document.getElementById('PriPer-108').innerHTML = ((d.properties[108] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-109').innerHTML = d.properties[109].toLocaleString('en');
+        document.getElementById('PriPer-109').innerHTML = ((d.properties[109] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-110').innerHTML = d.properties[110].toLocaleString('en');
+        document.getElementById('PriPer-110').innerHTML = ((d.properties[110] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-111').innerHTML = d.properties[111].toLocaleString('en');
+        document.getElementById('PriPer-111').innerHTML = ((d.properties[111] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-112').innerHTML = d.properties[112].toLocaleString('en');
+        document.getElementById('PriPer-112').innerHTML = ((d.properties[112] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-113').innerHTML = d.properties[113].toLocaleString('en');
+        document.getElementById('PriPer-113').innerHTML = ((d.properties[113] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-114').innerHTML = d.properties[114].toLocaleString('en');
+        document.getElementById('PriPer-114').innerHTML = ((d.properties[114] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+        document.getElementById('Pri-115').innerHTML = d.properties[115].toLocaleString('en');
+        document.getElementById('PriPer-115').innerHTML = ((d.properties[115] / d.properties.TotalVotes) * 100).toFixed(2) + "%";
+    }
+    //
+    //$(document).ready(function()
+    //    {
+    //        $("#mapTable1").tablesorter({theme: 'blue', sortList: [[0,0]]});
+    //        $("#mapTable2").tablesorter({theme: 'blue', sortList: [[0,0]]});
+    //    }
+    //);
 
 
     //http://bl.ocks.org/patricksurry/5721459
@@ -433,6 +475,8 @@ function composedRotation(λ, ϕ, γ, δλ, δϕ) {
 
 var m0 = null,
     o0;
+
+
 //
 //function mousedown() {  // remember where the mouse was pressed, in canvas coords
 //    m0 = trackballAngles(d3.mouse(svg[0][0]));
