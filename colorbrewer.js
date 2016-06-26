@@ -1,6 +1,4 @@
-/**
- * Created by Shep on 3/12/16.
- */
+
 // This product includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/).
 var colorbrewer = {YlGn: {
     3: ["#f7fcb9","#addd8e","#31a354"],
@@ -114,7 +112,22 @@ var colorbrewer = {YlGn: {
     7: ["#eff3ff","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#084594"],
     8: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#084594"],
     9: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"]
-},Greens: {
+},
+BlueShep: {
+    3: ["#deebf7","#9ecae1","#3182bd"],
+    4: ["#eff3ff","#bdd7e7","#6baed6","#2171b5"],
+    5: ["#eff3ff","#bdd7e7","#6baed6","#3182bd","#08519c"],
+    6: ["#eff3ff","#c6dbef","#9ecae1","#6baed6","#3182bd","#08519c"],
+    7: ["#eff3ff","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#084594"],
+    8: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#084594"],
+    9: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"],
+    10: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b","#fb6a4a"],
+    11: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b","#fb6a4a","#ef3b2c"],
+    12: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b","#fb6a4a","#ef3b2c","#cb181d"],
+    13: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b","#fb6a4a","#ef3b2c","#cb181d","#a50f15"],
+    14: ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b","#fb6a4a","#ef3b2c","#cb181d","#a50f15","#67000d"]
+},                   
+Greens: {
     3: ["#e5f5e0","#a1d99b","#31a354"],
     4: ["#edf8e9","#bae4b3","#74c476","#238b45"],
     5: ["#edf8e9","#bae4b3","#74c476","#31a354","#006d2c"],
